@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        <div class="row-fluid">
+            <div class="login-box">
+                <div class="icons">
+                    <a href="index.html"><i class="icon-home"></i></a>
+                    <a href="#"><i class="icon-cog"></i></a>
+                </div>
+                <div id="div-error-holder">
+                    <div ng-bind-html-unsafe="ChipJoin.msg"></div>
+                </div>
+                <h2>Login to your account</h2>
+                <form class="form-horizontal"  method="post">
+                    <fieldset>
+
+                        <div class="input-prepend" title="Username">
+                            <span class="add-on"><i class="icon-user"></i></span>
+                            <input class="input-large span10" name="username" id="username" type="text" autofocus="true" placeholder="Email"/>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="input-prepend" title="Password">
+                            <span class="add-on"><i class="icon-lock"></i></span>
+                            <input class="input-large span10" name="password" id="password" type="password" placeholder="Password"/>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <label class="remember" for="remember"><input type="checkbox" id="remember" />Remember me</label>
+
+                        <div class="button-login">
+                            <button type="button" ng-click="Login()" class="btn btn-primary" id="btnUserLogin"><i class="icon-off icon-white"></i> Login</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </fieldset>
+                </form>
+                <hr>
+                <h3>Forgot Password?</h3>
+                <span style="color: green; position: relative; left:14px; cursor: pointer;" ng-click="ShowRegister()">Register</span>
+                <p>
+                    No problem, <a href="#">click here</a> to get a new password.
+                </p>
+            </div><!--/span-->
+        </div><!--/row-->
+
+    </div><!--/fluid-row-->
+
+</div>
+<script type="text/javascript">
+    //TODO Change it Later.
+    document.getElementsByTagName("body")[0].style.backgroundImage='url(img/dbg.jpg)';
+</script>
