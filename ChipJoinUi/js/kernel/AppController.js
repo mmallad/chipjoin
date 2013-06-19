@@ -16,7 +16,6 @@
                 username: username,
                 password: password
             };
-
             ChipJoin().runManagementQuery(new Usergrid.Query('POST', 'token', formdata, null,
                 function(response) {
                     if (!response || response.error){
@@ -67,24 +66,24 @@
                     alert("Invalid username and password.");
                     //$scope.ChipJoin = {"msg":ChipJoin().ErrorMsg("Invalid username and password.")};
                 }));
-
-
             //Show Register Form
-
-
         };
         $scope.ShowRegister = function(){
             window.location.href = "/#/register";
         };
     };
-    _ChipJoin.prototype.AppController = function($scope, $routeParams){
+    _ChipJoin.prototype.AppController = function($scope, $routeParams,Organization){
         //Just verify whether user is logged in or not. :)
         if(!Usergrid.userSession.loggedIn())
             window.location.href = "/#/login";
-        $scope.ChipJoin = {"UserEmail":Usergrid.userSession.getUserEmail()};
+        $scope.UserEmail = Usergrid.userSession.getUserEmail();
+        Organization.LoadData();
+
+        //Logout Function
         $scope.Logout = function(){
             Usergrid.userSession.clearAll();
             window.location.href = "/#/login";
+
         };
     };
     _ChipJoin.prototype.RegisterController = function($scope, $routeParams){
@@ -137,4 +136,7 @@
             ));
         }
     };
+    ChipJoin().LoginController.$inject = ['$scope','$routeParams'];
+    ChipJoin().AppController.$inject = ['$scope','$routeParams','Organization'];
+    ChipJoin().RegisterController.$inject = ['$scope','$routeParams'];
 })();

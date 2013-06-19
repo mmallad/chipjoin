@@ -1,4 +1,4 @@
-angular.module('chipjoin',[]).config(['$routeProvider', function($routeProvider){$routeProvider.when('/login',
+angular.module('chipjoin',['dashBoardServices']).config(['$routeProvider', function($routeProvider){$routeProvider.when('/login',
     {templateUrl:'templates/login.html',
         controller:ChipJoin().LoginController}).when('/dashboard',{templateUrl:'templates/dashboard.html',
         controller:ChipJoin().AppController}).when('/register',{

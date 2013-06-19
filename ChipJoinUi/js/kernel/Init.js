@@ -4,9 +4,18 @@ Usergrid.organizations = new Usergrid.Organization();
 if (Usergrid.apiUrl) {
     Usergrid.ApiClient.setApiUrl(Usergrid.apiUrl);
 }
+function keys(o) {
+    var a = [];
+    for (var propertyName in o) {
+        a.push(propertyName);
+    }
+    return a;
+}
 (function(){
+
     ChipJoin = function(){return new _ChipJoin();};
     _ChipJoin.prototype.APIURL = 'http://localhost:8080/';
+    _ChipJoin.prototype.AppControllerModel = null;
     _ChipJoin.prototype.ErrorMsg = function(m){
         return '<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button>'+m+'</div>';
     };
@@ -15,6 +24,53 @@ if (Usergrid.apiUrl) {
         Usergrid.ApiClient.runManagementQuery(obj);
         return false;
     }
+    _ChipJoin.prototype.runAppQuery = function(_queryObj){
+        var obj = _queryObj || queryObj;
+        Usergrid.ApiClient.runAppQuery(obj);
+        return false;
+    };
+    _ChipJoin.prototype.displayApplications = function(response){
+        var applications = {};
+        var applications_by_id = {};
+
+        if (response.data) {
+            applications = response.data;
+            var applicationNames = keys(applications).sort();
+            var count = 0;
+            var data = [];
+            for (var i in applicationNames) {
+                var name = applicationNames[i];
+                var uuid = applications[name];
+                data.push({uuid:uuid, name:name.split("/")[1]});
+                count++;
+                applications_by_id[uuid] = name.split("/")[1];
+            }
+            var appName = Usergrid.ApiClient.getApplicationName();
+            //and make sure we it is in one of the current orgs
+            var app = Usergrid.organizations.getItemByName(appName);
+            if(appName && app) {
+                Usergrid.ApiClient.setApplicationName(appName);
+            } else {
+                //we need to select an app, so get the current org name
+                var orgName = Usergrid.ApiClient.getOrganizationName();
+                //get a reference to the org object by using the name
+                var org = Usergrid.organizations.getItemByName(orgName);
+                //get a handle to the first app in the org
+                app = org.getFirstItem();
+
+                //store the new app in the client
+                Usergrid.ApiClient.setApplicationName(app.getName());
+
+
+            }
+            return {"ID":app.getUUID(),"name":Usergrid.ApiClient.getApplicationName()};
+
+        }
+        else
+        {
+            //TODO Show Error Message. :)
+        }
+    };
 })();
 var emailRegex = new RegExp("^(([0-9a-zA-Z]+[_\+.-]?)+@[0-9a-zA-Z]+[0-9,a-z,A-Z,.,-]*(.){1}[a-zA-Z]{2,4})+$");
 var emailAllowedCharsMessage = 'eg. example@apigee.com';
