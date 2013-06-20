@@ -11,6 +11,10 @@ function keys(o) {
     }
     return a;
 }
+function get_gravatar(email, size) {
+    var size = size || 50;
+    return 'https://secure.gravatar.com/avatar/' + MD5(email) + '?s=' + size + encodeURI("&d=http://apigee.com/usergrid/images/user_profile.png");
+}
 (function(){
 
     ChipJoin = function(){return new _ChipJoin();};
@@ -28,6 +32,23 @@ function keys(o) {
         var obj = _queryObj || queryObj;
         Usergrid.ApiClient.runAppQuery(obj);
         return false;
+    };
+    _ChipJoin.prototype.loadAdmins = function(response){
+        var sectionAdmins = $('#organization-admins-table');
+        sectionAdmins.empty();
+        if (response.data) {
+            var admins = response.data;
+            admins = admins.sort();
+            var rData = [];
+            for (var i in admins) {
+                var admin = admins[i];
+                admin.gravatar = get_gravatar(admin.email, 20);
+                rData.push({"name":admin.name,"email":admin.email,"username":admin.username,"image":admin.gravatar});
+                //$.tmpl('apigee.ui.admins.table_rows.html', admin).appendTo(sectionAdmins);
+            }
+            return rData;
+        }
+        return null;
     };
     _ChipJoin.prototype.displayApplications = function(response){
         var applications = {};
@@ -47,6 +68,7 @@ function keys(o) {
             }
             var appName = Usergrid.ApiClient.getApplicationName();
             //and make sure we it is in one of the current orgs
+            var rData = [];
             var app = Usergrid.organizations.getItemByName(appName);
             if(appName && app) {
                 Usergrid.ApiClient.setApplicationName(appName);
@@ -57,13 +79,17 @@ function keys(o) {
                 var org = Usergrid.organizations.getItemByName(orgName);
                 //get a handle to the first app in the org
                 app = org.getFirstItem();
-
+                var list = org.getList();
+                for(var d in list)
+                {
+                        rData.push({"name":list[d].getName(),"id":list[d].getUUID()});
+                    //app = org.getFirstItem();
+                    //alert(app.getName());
+                }
                 //store the new app in the client
                 Usergrid.ApiClient.setApplicationName(app.getName());
-
-
             }
-            return {"ID":app.getUUID(),"name":Usergrid.ApiClient.getApplicationName()};
+            return rData;
 
         }
         else

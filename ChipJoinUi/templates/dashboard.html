@@ -308,18 +308,63 @@
     </ul>
     <hr>
     <div>
-        Current Organization: <span id="appName"></span>
-        <br>
-        Organization ID: <span id="orgID"></span>
+        <h3>Organization</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Organization Name</th>
+                    <th>ID</th>
+                </tr>
+            </thead>
+            <tbody id="orgHolder">
+                 <tr>
+                     <td colspan="2">Loading....</td>
+                 </tr>
+            </tbody>
+        </table>
     </div>
     <hr>
+    <a href="#newApplicationModal" role="button" class="btn" data-toggle="modal">New Application</a>
     <div>
-        Application Name: <span id="appsName"></span>
-        <br>
-        Application ID: <span id="appID"></span>
+        <h3>Application</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Application Name</th>
+                <th>ID</th>
+            </tr>
+            </thead>
+            <tbody id="appHolder">
+            <tr>
+                <td colspan="2">Loading....</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <hr>
+    <a href="#newAdminModal" role="button" class="btn" data-toggle="modal">New Admin</a>
+    <div>
+        <h3>Admins</h3>
+        <table class="table table-striped">
+            <tbody id="adminHolder">
+            <tr>
+                <td>Loading....</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+   <hr />
+   <div>
+       <input type="button" value="Regenerate Credentials" />
+       <table class="table table-striped">
+           <tbody id="userCred">
+           <tr>
+               <td>Loading....</td>
+           </tr>
+           </tbody>
+       </table>
+   </div>
 
 <!-- end: Content -->
 </div><!--/#content.span10-->
@@ -350,3 +395,31 @@
 </footer>
 
 </div><!--/.fluid-container-->
+
+<div id="newApplicationModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">New Application</h3>
+    </div>
+    <div class="modal-body">
+        <input type="text" placeholder="Application Name" required="required" id="txtNewAppName" />
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="createApplication()">Create Application</button>
+    </div>
+</div>
+
+<div id="newAdminModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel2">New Admin</h3>
+    </div>
+    <div class="modal-body">
+        <input type="email" placeholder="Email" required="required" id="txtNewAdmin" />
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="createNewAdmin()">Create Admin</button>
+    </div>
+</div>

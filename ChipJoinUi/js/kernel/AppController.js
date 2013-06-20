@@ -85,6 +85,58 @@
             window.location.href = "/#/login";
 
         };
+        //TODO For Creating New Application
+        $scope.createApplication = function(){
+
+            //TODO Create New Application :)
+            var application_name = $("#txtNewAppName").val();
+            var form_data = {
+                name:application_name
+            };
+            if(!document.getElementById("txtNewAppName").validity.valid)
+            {
+                //TODO Show some error over here :).
+                alert("Invalid application name.");
+            }
+            else
+            {
+
+                 ChipJoin().runManagementQuery(new Usergrid.Query("POST","organizations/" + Usergrid.ApiClient.getOrganizationName()  + "/applications",form_data,null,
+                    function(response){
+                        alert("Success");
+                        window.location.reload();
+
+                    },function(response){
+                       alert("Failed");
+                     }
+                 ));
+            }
+
+        };
+        //TODO For Creating New Admin
+        $scope.createNewAdmin = function(){
+            var admin_email = $("#txtNewAdmin").val();
+            var data = {
+                "email":admin_email
+            };
+            if(!document.getElementById("txtNewAdmin").validity.valid)
+            {
+                //TODO Show some error over here :).
+                alert("Invalid email.");
+            }
+            else
+            {
+                ChipJoin().runManagementQuery(new Usergrid.Query("POST","organizations/" + Usergrid.ApiClient.getOrganizationName() + "/users", data, null,
+                    function(response){
+                        alert("Admin added successfully.");
+                        window.location.reload();
+                    },
+                    function(response){
+                        alert("Could not add admin");
+                    }
+                ));
+            }
+        };
     };
     _ChipJoin.prototype.RegisterController = function($scope, $routeParams){
         $scope.Register = function(){

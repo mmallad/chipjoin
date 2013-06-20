@@ -3439,7 +3439,7 @@ function buildContentArea(obj2) {
       function(response) {
         $('#application-panel-key').html(response.credentials.client_id);
         $('#application-panel-secret').html(response.credentials.client_secret);
-        application_keys[current_application_id] = {client_id : response.credentials.client_id, client_secret : response.credentials.client_secret};
+        application_keys[current_application_id] = {client_id:response.credentials.client_id, client_secret : response.credentials.client_secret};
       },
       function() {
         $('#application-panel-key').html('<div class="alert">Unable to load...</div>');

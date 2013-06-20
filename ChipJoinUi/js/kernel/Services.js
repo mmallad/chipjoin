@@ -49,16 +49,44 @@ _ChipJoin.prototype.oo = function(s,f)
             var firstOrg = Usergrid.organizations.getFirstItem();
             Usergrid.ApiClient.setOrganizationName(firstOrg.getName());
             //s({"UserEmail":Usergrid.userSession.getUserEmail(),"AppName":Usergrid.ApiClient.getOrganizationName()});
-            $("#appName").html(Usergrid.ApiClient.getOrganizationName());
-            $("#orgID").html(orgUUID);
+            $("#orgHolder").html('<tr><td>'+Usergrid.ApiClient.getOrganizationName()+'</td><td>'+orgUUID+'</td></tr>');
             ChipJoin().runManagementQuery(new Usergrid.Query("GET","organizations/" + Usergrid.ApiClient.getOrganizationName() + "/applications", null, null,
                 function(){
                     var o = ChipJoin().displayApplications(response);
-                    $("#appsName").html(o.name);
-                    $("#appID").html(o.ID);
+                    $("#appHolder").html("");
+                    for(var ob in o)
+                    {
+                        $("#appHolder").append('<tr><td>'+o[ob]["name"]+'</td><td>'+o[ob]["id"]+'</td></tr>');
+                    }
                 },
                 function() {
                     //TODO Show Error
+                }
+            ));
+            //TODO Load Admin Details :)
+            ChipJoin().runManagementQuery(new Usergrid.Query("GET","organizations/" + Usergrid.ApiClient.getOrganizationName()  + "/users", null, null,
+                function(response){
+                   var ao = ChipJoin().loadAdmins(response);
+                    $("#adminHolder").html("");
+                    for(var ob in ao)
+                    {
+                        $("#adminHolder").append('<tr><td><img src"'+ao[ob]["image"]+'" />'+ao[ob]["name"]+' ('+ao[ob]["email"]+')</td></tr>');
+                    }
+                },
+                function(response){
+                    //TODO Implement Admin Error
+                    alert("Oops something went wrong while fetching admins.");
+                })
+            );
+            //TODO Load Credentials
+            ChipJoin().runAppQuery(new Usergrid.Query("GET", "credentials", null, null,
+                function(response) {
+                    $("#adminHolder").html('<tr><td>'+response.credentials.client_id+'</td><td>'+response.credentials.client_secret+'</td></tr>');
+                },
+                function(response) {
+
+                    //TODO Show Error
+                    alert("Oops something went wrong while loading credentials.");
                 }
             ));
             //alert(Usergrid.ApiClient.getApplicationName());
