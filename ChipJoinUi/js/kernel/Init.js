@@ -33,6 +33,14 @@ function get_gravatar(email, size) {
         Usergrid.ApiClient.runAppQuery(obj);
         return false;
     };
+    _ChipJoin.prototype.fillEditProfile = function(response){
+        response.data.gravatar = get_gravatar(response.data.email, 50);
+        $('#update-account-username').val(response.data.username);
+        $('#update-account-name').val(response.data.name);
+        $('#update-account-email').val(response.data.email);
+        $('#update-account-picture-img').attr('src', response.data.gravatar);
+        $('#update-account-bday').attr('src', response.data.gravatar);
+    };
     _ChipJoin.prototype.loadAdmins = function(response){
         var sectionAdmins = $('#organization-admins-table');
         sectionAdmins.empty();

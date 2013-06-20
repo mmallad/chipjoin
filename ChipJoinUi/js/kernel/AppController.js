@@ -77,6 +77,7 @@
         if(!Usergrid.userSession.loggedIn())
             window.location.href = "/#/login";
         $scope.UserEmail = Usergrid.userSession.getUserEmail();
+        //alert(Usergrid.userSession.getUserEmail());
         Organization.LoadData();
 
         //Logout Function
@@ -136,6 +137,64 @@
                     }
                 ));
             }
+        };
+        //TODO Save Account Profile
+        $scope.profileSave = function(){
+            var userData = {
+                username : $('#update-account-username').val(),
+                name : $('#update-account-name').val(),
+                email : $('#update-account-email').val()
+            };
+            var old_pass = $('#old-account-password').val();
+            var new_pass = $('#update-account-password').val();
+            var new_pass2 = $('#update-account-password-repeat').val();
+            if (old_pass && new_pass) {
+                if (new_pass != new_pass2) {
+                    //TODO Password do not match.
+                    alert("Password do not match.");
+                    return;
+                }
+                userData.newpassword = new_pass;
+                userData.oldpassword = old_pass;
+            }
+            ChipJoin().runManagementQuery(new Usergrid.Query("PUT",'users/' + Usergrid.userSession.getUserUUID(), userData, null,
+                function(response){
+                    //TODO Just do Logout if password is changed.
+                    alert("Account update was success.");
+
+                },
+                function(response){
+                    //TODO account update faile URL.
+                    alert("Could not update your account.");
+                }
+            )
+            );
+
+        };
+        //TODO Create New Organization
+        $scope.createNewOrg = function()
+        {
+            var org_name = $("#txtNewOrgname").val();
+            if(!document.getElementById("txtNewOrgname").validity.valid)
+            {
+                 alert("Invalid organization name.");
+            }
+            else
+            {        var data = {
+                        "organization":org_name
+                    };
+                    ChipJoin().runManagementQuery(new Usergrid.Query("POST","users/" + Usergrid.userSession.getUserUUID() + "/organizations", data, null,
+                    function() {
+                        alert("Organization added successfully");
+                        window.location.reload();
+                    },
+                    function(response) {
+                        console.log(response);
+                        alert("Could not add organization.");
+                    }
+                ));
+            }
+
         };
     };
     _ChipJoin.prototype.RegisterController = function($scope, $routeParams){
