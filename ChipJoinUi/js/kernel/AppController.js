@@ -16,10 +16,11 @@
                 username: username,
                 password: password
             };
+            $("#div-error-holder").html(ChipJoin().InfoMsg("Please wait verifying email and password."));
             ChipJoin().runManagementQuery(new Usergrid.Query('POST', 'token', formdata, null,
                 function(response) {
                     if (!response || response.error){
-                        alert("Oops something went wrong.");
+                        $("#div-error-holder").html(ChipJoin().ErrorMsg("Oops something went wrong."));
                         //$scope.ChipJoin = {"msg":ChipJoin().ErrorMsg("Oops something went wrong.")};
                         //return
                     }
@@ -63,7 +64,7 @@
                         usernameObj.focus();
                     else
                         passwordObj.focus();
-                    alert("Invalid username and password.");
+                    $("#div-error-holder").html(ChipJoin().ErrorMsg("Invalid email or password."));
                     //$scope.ChipJoin = {"msg":ChipJoin().ErrorMsg("Invalid username and password.")};
                 }));
             //Show Register Form
@@ -83,6 +84,8 @@
         //Logout Function
         $scope.Logout = function(){
             Usergrid.userSession.clearAll();
+            document.cookie = 'appName=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+            document.cookie = 'orgName=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
             window.location.href = "/#/login";
 
         };
@@ -196,6 +199,53 @@
             }
 
         };
+        //TODO Create New User
+        $scope.createNewUser = function(){
+            var email = $('#new-user-email');
+            var username = $('#new-user-username');
+            var fullname = $('#new-user-fullname');
+            var password = $('#new-user-password');
+            var validate_password = $('#new-user-validate-password');
+            //TODO DO some validation.
+            if (!(usernameRegex.test(username.val()))) {
+                alert("Invalid username.");
+            }
+            else if (!$.trim(fullname.val()).length) {
+                alert("Invalid name.");
+            }
+            else if (!(emailRegex.test(email.val()))) {
+                alert("Invalid email.");
+            }
+            else if(password.val() != validate_password.val())
+            {
+                alert("Password do not match.");
+            }
+            else
+            {
+                var data = {
+                    email:email.val(),
+                    username:username.val(),
+                    name:fullname.val(),
+                    password:password.val()
+                };
+                ChipJoin().runAppQuery(new Usergrid.Query("POST", 'users', data, null,
+                    function(){
+                        //TODO show all users.
+                        ChipJoin().getAllUsers();
+                      alert("User created successfully.");
+                    },
+                    function(){
+                        alert("Could not create user. Please try again");
+                    }
+                )
+                );
+            }
+
+        };
+        //TODO Bind Panel Navigation.
+        $("#linkShowUserManagementPanel").click(function(){
+            ChipJoin().switchPanel("panelUserManagement","User Management");
+        });
     };
     _ChipJoin.prototype.RegisterController = function($scope, $routeParams){
         $scope.Register = function(){

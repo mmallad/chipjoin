@@ -19,7 +19,7 @@
 </li>
 <li class="dropdown">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-        Organization <span class="caret"></span>
+        <span id="currOrgShow">Organization</span> <span class="caret"></span>
     </a>
     <ul class="dropdown-menu span3" id="appendOrgList">
         <li>
@@ -27,6 +27,16 @@
         </li>
     </ul>
 </li>
+    <li class="dropdown">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <span id="currAppShow">Application</span> <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu span3" id="appendAppList">
+            <li>
+                <a href="#newApplicationModal" role="button" data-toggle="modal"><i class="icon-edit"></i> Create New Application</a>
+            </li>
+        </ul>
+    </li>
 <!-- start: User Dropdown -->
 <li class="dropdown">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -56,8 +66,8 @@
 <div class="span2 main-menu-span">
     <div class="nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
-            <li><a href="index.html"><i class="icon-home icon-white"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-            <li><a href="ui.html"><i class="icon-eye-open icon-white"></i><span class="hidden-tablet"> UI Features</span></a></li>
+            <li><a href="/#/dashboard"><i class="icon-home icon-white"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+            <li><a href="javascript:" id="linkShowUserManagementPanel"><i class="icon-user icon-white"></i><span class="hidden-tablet"> User Management</span></a></li>
             <li><a href="form.html"><i class="icon-edit icon-white"></i><span class="hidden-tablet"> Forms</span></a></li>
             <li><a href="chart.html"><i class="icon-list-alt icon-white"></i><span class="hidden-tablet"> Charts</span></a></li>
         </ul>
@@ -82,68 +92,132 @@
             <a href="/#/dashboard">Home</a> <span class="divider">/</span>
         </li>
         <li>
-            <a href="/#/dashboard">Dashboard</a>
+            <a href="javascript:" id="navCurrent">Dashboard</a>
         </li>
     </ul>
-    <hr>
-    <div>
-        <h3>Current Organization</h3>
-        <table class="table table-striped">
-            <thead>
+    <div id="panelDashBoard">
+        <hr>
+        <div>
+            <h3>Current Organization</h3>
+            <table class="table table-striped">
+                <thead>
                 <tr>
                     <th>Organization Name</th>
                     <th>ID</th>
                 </tr>
-            </thead>
-            <tbody id="orgHolder">
-                 <tr>
-                     <td colspan="2">Loading....</td>
-                 </tr>
-            </tbody>
-        </table>
+                </thead>
+                <tbody id="orgHolder">
+                <tr>
+                    <td colspan="2">Loading....</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <a href="#newApplicationModal" role="button" class="btn" data-toggle="modal">New Application</a>
+        <div>
+            <h3>Application</h3>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Application Name</th>
+                    <th>ID</th>
+                </tr>
+                </thead>
+                <tbody id="appHolder">
+                <tr>
+                    <td colspan="2">Loading....</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+        <a href="#newAdminModal" role="button" class="btn" data-toggle="modal">New Admin</a>
+        <div>
+            <h3>Admins</h3>
+            <table class="table table-striped">
+                <tbody id="adminHolder">
+                <tr>
+                    <td>Loading....</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr />
+        <div>
+            <input type="button" value="Regenerate Credentials" />
+            <table class="table table-striped">
+                <tbody id="userCred">
+                <tr>
+                    <td>Loading....</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <hr>
-    <a href="#newApplicationModal" role="button" class="btn" data-toggle="modal">New Application</a>
-    <div>
-        <h3>Application</h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Application Name</th>
-                <th>ID</th>
-            </tr>
-            </thead>
-            <tbody id="appHolder">
-            <tr>
-                <td colspan="2">Loading....</td>
-            </tr>
-            </tbody>
-        </table>
+    <div id="panelUserManagement" style="display: none; padding-top: 34px;">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#tabuser" data-toggle="tab">User</a></li>
+            <li><a href="#tabgroup" data-toggle="tab">Group</a></li>
+            <li>
+                <a href="#tabrole" data-toggle="tab">Role</a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="tabuser">
+                <a href="#createNewUserModal" class="btn" role="button" data-toggle="modal">Create User</a>
+                <input type="button" class="btn btn-danger" value="Delete User" />
+                <hr />
+                <div id="newUserFormModal" style="display: none;">
+
+                </div>
+                <div id="listAllUser">
+                    <div id="users-table">
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tabgroup">
+                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+            </div>
+            <div class="tab-pane fade" id="tabrole">
+                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+            </div>
+        </div>
     </div>
-    <hr>
-    <a href="#newAdminModal" role="button" class="btn" data-toggle="modal">New Admin</a>
-    <div>
-        <h3>Admins</h3>
-        <table class="table table-striped">
-            <tbody id="adminHolder">
-            <tr>
-                <td>Loading....</td>
-            </tr>
-            </tbody>
-        </table>
+    <div id="panelUserDetailView" style="display: none;padding-top: 34px;">
+         <div>
+             <ul id="myProfileTab" class="nav nav-tabs">
+                 <li class="active"><a href="#tabprofile" data-toggle="tab">Profile</a></li>
+                 <li><a href="#tabgroups" data-toggle="tab">Groups</a></li>
+                 <li>
+                     <a href="#tabactivities" data-toggle="tab">Activities</a>
+                 </li>
+                 <li>
+                     <a href="#tabgraph" data-toggle="tab">Graph</a>
+                 </li>
+                 <li>
+                     <a href="#tabroles" data-toggle="tab">Roles & Permission</a>
+                 </li>
+             </ul>
+             <div class="tab-content">
+                 <div class="tab-pane fade in active" id="tabprofile">
+                     <div id="loaduserProfileDetails"></div>
+                 </div>
+                 <div class="tab-pane fade" id="tabgroups">Goups</div>
+                 <div class="tab-pane fade" id="tabactivities">Activities</div>
+                 <div class="tab-pane fade" id="tabgraph">Graph</div>
+                 <div class="tab-pane fade" id="tabroles">Roles</div>
+             </div>
+         </div>
+    </div>
+    <div id="panelUserDetailEdit" style="display: none; padding-top: 34px;">
+           <div id="panelUserDetailEditHolder">
+               Loading....
+           </div>
     </div>
 </div>
-   <hr />
-   <div>
-       <input type="button" value="Regenerate Credentials" />
-       <table class="table table-striped">
-           <tbody id="userCred">
-           <tr>
-               <td>Loading....</td>
-           </tr>
-           </tbody>
-       </table>
-   </div>
+
 
 <!-- end: Content -->
 </div><!--/#content.span10-->
@@ -213,6 +287,58 @@
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         <button class="btn btn-primary" ng-click="createNewAdmin()">Create Admin</button>
+    </div>
+</div>
+
+<div id="createNewUserModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModaluserManagementModal" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModaluserManagementModal">New User</h3>
+    </div>
+    <div class="modal-body">
+
+        <fieldset>
+            <div class="control-group">
+                <label for="new-user-username">Username</label>
+                <div class="controls">
+                    <input type="text" name="username" id="new-user-username" class="input-xlarge"/>
+                    <p class="help-block hide"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="new-user-fullname">Full name</label>
+                <div class="controls">
+                    <input type="text" name="name" id="new-user-fullname" class="input-xlarge"/>
+                    <p class="help-block hide"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="new-user-email">Email</label>
+                <div class="controls">
+                    <input type="text" name="email" id="new-user-email" class="input-xlarge"/>
+                    <p class="help-block hide"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="new-user-password">Password</label>
+                <div class="controls">
+                    <input type="password" name="password" id="new-user-password" class="input-xlarge"/>
+                    <p class="help-block hide"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="new-user-validate-password">Confirm password</label>
+                <div class="controls">
+                    <input type="password" name="validate-password" id="new-user-validate-password" class="input-xlarge"/>
+                    <p class="help-block hide"></p>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" id="dlgNewUserCloseBtn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" id="btnCreateUserBtn"   ng-click="createNewUser()">Create User</button>
     </div>
 </div>
 <div id="manageOrganizationModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

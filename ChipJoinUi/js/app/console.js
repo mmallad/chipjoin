@@ -2281,8 +2281,7 @@ function buildContentArea(obj2) {
         //this_data.picture = this_data.picture + encodeURI("?d="+window.location.protocol+"//" + window.location.host + window.location.pathname + "images/user_profile.png");
         picture = entity.picture + encodeURI("?d=http://apigee.com/usergrid/images/user_profile.png");
       }
-
-    var data = {
+      var data = {
       entity: entity_contents,
       picture: picture,
       name: name,

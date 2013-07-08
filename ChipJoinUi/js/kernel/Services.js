@@ -19,6 +19,7 @@ _ChipJoin.prototype.oo = function(s,f)
 {
     var token = Usergrid.userSession.getAccessToken();
     Usergrid.ApiClient.setToken(token);
+    //TODO Load Organization
     ChipJoin().runManagementQuery(new Usergrid.Query("GET","users/" + Usergrid.userSession.getUserEmail(), null, null,
         function(response){
             //Check For Error.
@@ -47,15 +48,26 @@ _ChipJoin.prototype.oo = function(s,f)
 
             }
             var firstOrg = Usergrid.organizations.getFirstItem();
-            Usergrid.ApiClient.setOrganizationName(firstOrg.getName());
+            if(!ChipJoin().getCookie("orgName")){
+                Usergrid.ApiClient.setOrganizationName(firstOrg.getName());
+
+            }
+            else
+            {
+                Usergrid.ApiClient.setOrganizationName(ChipJoin().getCookie("orgName"));
+            }
+            $("#currOrgShow").html(Usergrid.ApiClient.getOrganizationName());
+
             //s({"UserEmail":Usergrid.userSession.getUserEmail(),"AppName":Usergrid.ApiClient.getOrganizationName()});
             $("#orgHolder").html('<tr><td>'+Usergrid.ApiClient.getOrganizationName()+'</td><td>'+orgUUID+'</td></tr>');
             var allOrg = Usergrid.organizations.getList();
             for(var allorgName in allOrg)
             {
-                $("#appendOrgList").prepend('<li><a href="#">'+allOrg[allorgName].getName()+'</a></li>');
+
+                $("#appendOrgList").prepend('<li><a href="javascript:" role="button" onclick="ChipJoin().switchOrg(\''+allOrg[allorgName].getName()+'\')">'+allOrg[allorgName].getName()+'</a></li>');
             }
             $("#manageOrganization").html('<tr><td>'+Usergrid.ApiClient.getOrganizationName()+'</td><td>'+orgUUID+'</td><td><input type="button" value="Leave" class="btn btn-danger" onclick="ChipJoin().deleteCurrentOrg(\''+orgUUID+'\')" /></td></tr>');
+            //TODO Load Applications
             ChipJoin().runManagementQuery(new Usergrid.Query("GET","organizations/" + Usergrid.ApiClient.getOrganizationName() + "/applications", null, null,
                 function(){
                     var o = ChipJoin().displayApplications(response);
@@ -63,7 +75,7 @@ _ChipJoin.prototype.oo = function(s,f)
                     for(var ob in o)
                     {
                         $("#appHolder").append('<tr><td>'+o[ob]["name"]+'</td><td>'+o[ob]["id"]+'</td></tr>');
-
+                        $("#appendAppList").prepend('<li><a href="javascript:" role="button" onclick="ChipJoin().switchApp(\''+o[ob]["name"]+'\')">'+o[ob]["name"]+'</a></li>');
                     }
                 },
                 function() {
@@ -82,7 +94,8 @@ _ChipJoin.prototype.oo = function(s,f)
                 },
                 function(response){
                     //TODO Implement Admin Error
-                    alert("Oops something went wrong while fetching admins.");
+                   // alert("Oops something went wrong while fetching admins.");
+                    $("#adminHolder").html('<tr><td colspan="0">'+ChipJoin().ErrorMsg("Could not load admins.")+'</td></tr>');
                 })
             );
             //TODO Fill Edit Profile.
@@ -97,19 +110,20 @@ _ChipJoin.prototype.oo = function(s,f)
                 }
             ));
             //TODO Load Credentials
+            if(!Usergrid.ApiClient.getApplicationName())
+            {
+                Usergrid.ApiClient.setApplicationName(ChipJoin().getCookie("appName"));
+            }
             ChipJoin().runAppQuery(new Usergrid.Query("GET","credentials", null, null,
                 function(response) {
-                    $("#adminHolder").html('<tr><td>'+response.credentials.client_id+'</td><td>'+response.credentials.client_secret+'</td></tr>');
+                    $("#userCred").html('<tr><td>'+response.credentials.client_id+'</td><td>'+response.credentials.client_secret+'</td></tr>');
                 },
                 function(response) {
 
                     //TODO Show Error
-                    alert("Oops something went wrong while loading credentials.");
+                    $("#userCred").html('<tr><td colspan="2">'+ChipJoin().ErrorMsg("Could not load credentials.")+'</td></tr>');
                 }
             ));
-
-
-            //alert(Usergrid.ApiClient.getApplicationName());
         },
         function(response){
             alert("Oops Something went wrong.");
