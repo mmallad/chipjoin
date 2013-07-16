@@ -6,7 +6,7 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/index.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373869060039" ignored="false" />
     <file path="/App.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373958291480" ignored="false" />
-    <file path="/AppController.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373959823645" ignored="false" />
+    <file path="/AppController.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373964205589" ignored="false" />
     <file path="/login.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373868559039" ignored="false" />
     <file path="/Init.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373953352521" ignored="false" />
     <file path="/dashboard.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373956131835" ignored="false" />
@@ -78,7 +78,7 @@
       <file leaf-file-name="AppController.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/kernel/AppController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="54" selection-start="10656" selection-end="10656" vertical-scroll-proportion="0.79744524">
+            <state line="138" column="43" selection-start="6693" selection-end="6693" vertical-scroll-proportion="-0.9270833">
               <folding />
             </state>
           </provider>
@@ -87,7 +87,7 @@
       <file leaf-file-name="App.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/kernel/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="717" column="51" selection-start="32611" selection-end="32611" vertical-scroll-proportion="-12.392858">
+            <state line="717" column="51" selection-start="32611" selection-end="32611" vertical-scroll-proportion="0.0">
               <folding>
                 <marker date="1373958704203" expanded="true" signature="15105:15125" placeholder="..." />
                 <marker date="1373958704203" expanded="true" signature="17887:18111" placeholder="..." />
@@ -145,7 +145,7 @@
       <file leaf-file-name="console.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/app/console.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3151" column="0" selection-start="108757" selection-end="108925" vertical-scroll-proportion="-7.0">
+            <state line="3894" column="16" selection-start="135007" selection-end="135012" vertical-scroll-proportion="-6.5">
               <folding />
             </state>
           </provider>
@@ -154,7 +154,7 @@
       <file leaf-file-name="dashboard.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1028" column="141" selection-start="63200" selection-end="63200" vertical-scroll-proportion="0.0">
+            <state line="1028" column="141" selection-start="63200" selection-end="63200" vertical-scroll-proportion="-640.625">
               <folding />
             </state>
           </provider>
@@ -223,7 +223,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -309,6 +308,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -317,10 +317,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -341,19 +341,6 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -382,6 +369,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -620,21 +620,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1028" column="141" selection-start="63200" selection-end="63200" vertical-scroll-proportion="0.0">
+        <state line="1028" column="141" selection-start="63200" selection-end="63200" vertical-scroll-proportion="-640.625">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app/console.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3151" column="0" selection-start="108757" selection-end="108925" vertical-scroll-proportion="-7.0">
+        <state line="3894" column="16" selection-start="135007" selection-end="135012" vertical-scroll-proportion="-6.5">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/kernel/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="717" column="51" selection-start="32611" selection-end="32611" vertical-scroll-proportion="-12.392858">
+        <state line="717" column="51" selection-start="32611" selection-end="32611" vertical-scroll-proportion="0.0">
           <folding>
             <marker date="1373958704203" expanded="true" signature="15105:15125" placeholder="..." />
             <marker date="1373958704203" expanded="true" signature="17887:18111" placeholder="..." />
@@ -672,7 +672,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/kernel/AppController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="241" column="54" selection-start="10656" selection-end="10656" vertical-scroll-proportion="0.79744524">
+        <state line="138" column="43" selection-start="6693" selection-end="6693" vertical-scroll-proportion="-0.9270833">
           <folding />
         </state>
       </provider>
