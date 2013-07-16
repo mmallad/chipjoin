@@ -1,5 +1,5 @@
 <!-- start: Header -->
-<div class="navbar">
+<div class="navbar navbar-fixed-top">
 <div class="navbar-inner">
 <div class="container-fluid">
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
@@ -7,16 +7,14 @@
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
 </a>
-<a class="brand" href="index.html"> <img alt="Chip Join Dashboard" src="img/logo20.png" /> <span class="hidden-phone">ChipJoin Dashboard</span></a>
+<a class="brand" href="#/dashboard"> <img alt="Chip Join Dashboard" src="img/logo20.png" /> <span class="hidden-phone">ChipJoin Dashboard</span></a>
 <!-- start: Header Menu -->
 <div class="nav-no-collapse header-nav">
 <ul class="nav pull-right">
 <!-- end: Message Dropdown -->
-<li>
-    <a class="btn" href="#">
-        <i class="icon-wrench icon-white"></i>
-    </a>
-</li>
+ <li>
+     <div class="alert alert-info" id="holdMsg" style="padding: 5px; position: relative; display: none; top:9px; left:-260px;">Loading....</div>
+ </li>
 <li class="dropdown">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
         <span id="currOrgShow">Organization</span> <span class="caret"></span>
@@ -59,17 +57,17 @@
 </div>
 <!-- start: Header -->
 
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 52px;">
 <div class="row-fluid">
 
 <!-- start: Main Menu -->
 <div class="span2 main-menu-span">
     <div class="nav-collapse sidebar-nav">
         <ul class="nav nav-tabs nav-stacked main-menu">
-            <li><a href="/#/dashboard"><i class="icon-home icon-white"></i><span class="hidden-tablet"> Dashboard</span></a></li>
+            <li><a href="#"><i class="icon-home icon-white"></i><span class="hidden-tablet"> Dashboard</span></a></li>
             <li><a href="javascript:" id="linkShowUserManagementPanel"><i class="icon-user icon-white"></i><span class="hidden-tablet"> User Management</span></a></li>
-            <li><a href="form.html"><i class="icon-edit icon-white"></i><span class="hidden-tablet"> Forms</span></a></li>
-            <li><a href="chart.html"><i class="icon-list-alt icon-white"></i><span class="hidden-tablet"> Charts</span></a></li>
+            <li><a href="javascript:" id="linkShowDataExplorer"><i class="icon-book icon-white"></i><span class="hidden-tablet"> Data Explorer</span></a></li>
+            <li><a href="javascript:" id="linkShowQueryWindow"><i class="icon-list-alt icon-white"></i><span class="hidden-tablet"> Query</span></a></li>
         </ul>
     </div><!--/.well -->
 </div><!--/span-->
@@ -86,10 +84,13 @@
 <!-- start: Content -->
 
 <div style="min-height: 1000px;">
+
+
+
     <hr>
     <ul class="breadcrumb">
         <li>
-            <a href="/#/dashboard">Home</a> <span class="divider">/</span>
+            <a href="#">Home</a> <span class="divider">/</span>
         </li>
         <li>
             <a href="javascript:" id="navCurrent">Dashboard</a>
@@ -145,7 +146,7 @@
         </div>
         <hr />
         <div>
-            <input type="button" value="Regenerate Credentials" />
+            <input type="button" id="reGenerateCredentials" value="Regenerate Credentials" />
             <table class="table table-striped">
                 <tbody id="userCred">
                 <tr>
@@ -154,6 +155,211 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div id="panelqueryShell" style="display:none; padding-top:30px;">
+        <div id="shell-content" class="console-section">
+            <div class="well thingy"> <span class="title"> Interactive Shell </span></div>
+            <div class="console-section-contents">
+                <div id="shell-input-div">
+                    <p>   Type "help" to view a list of the available commands.</p><hr>
+                    <span>&nbsp;&gt;&gt; </span>
+                    <textarea id="shell-input" rows="2" autofocus="autofocus"></textarea>
+                </div>
+                    <pre id="shell-output" class="prettyprint lang-js" style="overflow-x: auto; height: 400px;"><span class="pln"></span><p><span class="pln"></span><span class="typ">Response</span><span class="pun">:</span></p><hr><span class="pln">
+                    </span></pre>
+            </div>
+        </div>
+    </div>
+    <div id="panelDataExplorer" style="display:none;padding-top:30px;">
+        <a class="btn" data-toggle="modal" href="#dialog-form-new-collection">Add Collection</a>
+
+        <span class="title">Data Explorer</span>
+        <hr />
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    <div id="data-explorer" class="">
+                        <span class="title">Run Query</span>
+                        <hr />
+                        <div style="padding-right: 20px;">
+                            <form id="query-inputs" class="">
+                                <div class="control-group">
+                                    <div class="" data-toggle="buttons-radio">
+                                        <!--a class="btn" id="button-query-back">&#9664; Back</a-->
+                                        <!--Added disabled class to change the way button looks but their functionality is as usual -->
+                                        <label class="control-label"><strong>Method</strong> <a id="query-method-help" href="#" class="help-link">get help</a></label>
+                                        <input type="radio" name="query-action" value="get" style="margin-top: -2px;" id="button-query-get" checked=""> GET &nbsp; &nbsp;
+                                        <input type="radio" name="query-action" value="post" style="margin-top: -2px;" id="button-query-post"> POST &nbsp; &nbsp;
+                                        <input type="radio" name="query-action" value="put" style="margin-top: -2px;" id="button-query-put"> PUT &nbsp; &nbsp;
+                                        <input type="radio" name="query-action" value="delete" style="margin-top: -2px;" id="button-query-delete"> DELETE
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label" for="query-path"><strong>Path</strong> <a href="javascript:" id="helpPopPath" class="btn" data-toggle="popover" data-placement="right" data-content="The query path is typically just the name of the collection you want to access. For example, if you want to work with a dogs collection, then your path will be:
+
+ Example: /dog" title="" data-original-title="Query Path">?</a></label>
+                                    <div class="controls">
+                                        <div class="input-append">
+                                            <input id="query-path" type="text" name="path" class="span6" autocomplete="off" placeholder="ex: /users">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <a id="back-to-collection" class="outside-link" style="display: none;">Back to collection</a>
+                                </div>
+                                <div class="control-group" id="query-ql-box" style="">
+                                    <label class="control-label" for="query-ql"><strong>Query String</strong> <a href="javascript:" id="helpPop" class="btn" data-toggle="popover" data-placement="right" data-content="Use the Query String field to enter SQL-style queries against your collections. Example: select * where name = 'fred*'" title="" data-original-title="Making Queries">?</a> </label>
+                                    <div class="controls">
+
+                                        <div class="input-append">
+                                            <input id="query-ql" type="text" name="query" class="span5" placeholder="ex: select * where name='fred'" />
+                                            <div class="btn-group pull-right">
+                                                <a class="btn dropdown-toggle " data-toggle="dropdown">
+                                                    <span id="query-collections-caret" class="caret"></span>
+                                                </a>
+                                                <ul id="query-collections-indexes-list" class="dropdown-menu "><li><a href="#" onclick="ChipJoin().appendToCollectionsQuery('activated'); return false;">activated</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('adr'); return false;">adr</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('adr.addr1'); return false;">adr.addr1</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('adr.addr2'); return false;">adr.addr2</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('adr.city'); return false;">adr.city</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('adr.country'); return false;">adr.country</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('adr.state'); return false;">adr.state</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('adr.zip'); return false;">adr.zip</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('bday'); return false;">bday</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('created'); return false;">created</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('email'); return false;">email</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('modified'); return false;">modified</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('name'); return false;">name</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('tel'); return false;">tel</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('title'); return false;">title</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('url'); return false;">url</a> </li>  <li>   <a href="#" onclick="ChipJoin().appendToCollectionsQuery('username'); return false;">username</a> </li></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group" id="query-limit-box">
+                                    <label class="control-label" for="query-limit"><strong>Limit</strong> <a href="javascript:" id="helpPopLimit" class="btn" data-toggle="popover" data-placement="right" data-content="The limit parameter is used to tell the API how many results you want to have returned from the API call.
+
+The default setting is 10.
+
+The max setting is 999.
+
+This parameter is appended to the end of the query string to be sent to the API. For example, a limit of 100: Example: GET /dogs?limit=100" title="" data-original-title="Limit">?</a></label>
+                                    <div class="controls">
+                                        <script type="text/javascript">
+                                            $("#helpPop").popover({trigger:'click'});
+                                            $("#helpPopPath").popover({trigger:'click'});
+                                            $("#helpPopLimit").popover({trigger:'click'});
+                                        </script>
+                                        <div class="input-append">
+                                            <input id="query-limit" type="text" name="query-limit" class="span5" placeholder="ex: 10">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group" id="query-json-box" style="display:none">
+                                    <label class="control-label" for="query-source"><strong>JSON Body</strong> <a id="query-json-help" href="#" class="help-link">get help</a></label>
+                                    <div class="controls">
+                                        <div class="input-append">
+                                            <textarea id="query-source" class="span6 pull-left" rows="4">                  { "name":"value" }
+                                            </textarea>
+                                        </div>
+                                        <a class="btn pull-left" id="button-query-validate">Validate JSON</a>
+                                        <div id="statusbar-placeholder" style="width: 100px; float: right;"></div>
+                                    </div>
+                                </div>
+                                <div style="clear: both; height: 10px;"></div>
+                                <div class="control-group">
+                                    <button type="button" class="btn btn-primary" id="button-query">Run Query</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span class="title">Collections</span>
+                    <hr />
+                    <div id="left-collections-content"></div>
+                </td>
+            </tr>
+        </table>
+        <div id="query-received-header">
+            <div class="bar">
+                <a class="btn " data-toggle="modal" id="delete-entity-link" > Delete</a>
+            </div>
+        </div>
+        <table id="query-response-table">
+
+        </table>
+        <script type="text/html" id="uiFORDropDOwn">
+            {{each data}}
+            <li>
+                <a href="#" onclick="ChipJoin().appendToCollectionsQuery('${$value}'); return false;">${$value}</a>
+            </li>
+            {{/each}}
+        </script>
+        <script type="text/html" id="uiForCollectionWHichDoNot">
+            <tr class="zebraRows">
+
+                <td class="collection-column">
+                    <a href="javascript:" onclick="ChipJoin().pageOpenQueryExplorer('/${name}'); return false;">/${name}</a>
+                </td>
+                <td>
+                    (${count} entities)
+                </td>
+            </tr>
+        </script>
+        <script type="text/html" id="uiForXYZ">
+
+            <tr class="zebraRows users-row">
+                <td class="checkboxo">
+                    <input class="listItem" type="checkbox" name="${r.metadata.path}" value="${r.uuid}" />
+                </td>
+
+                {{if r.type == 'user'}}
+                <td class="gravatar50-td">
+                    <img src="${r.picture}" class="gravatar50"/>
+                </td>
+                <td class="details">
+                    <a onclick="ChipJoin().getCollection('GET', '/${r.type}/'+'${r.uuid}'); $('#data-explorer').show(); return false;" class="view-details">${r.username}</a>
+                </td>
+                <td class="details">
+                    ${r.name}
+                </td>
+                {{else r.type == 'group'}}
+                <td class="details">
+                    <a href="" onclick="ChipJoin().getCollection('GET', '/${r.type}/'+'${r.uuid}'); $('#data-explorer').show(); return false;" class="view-details">${r.path}</a>
+                </td>
+                <td class="details">
+                    ${r.title}
+                </td>
+                {{else r.type == 'role'}}
+                <td class="details">
+                    <a href="" onclick="ChipJoin().getCollection('GET', '/${r.type}/'+'${r.uuid}'); $('#data-explorer').show(); return false;" class="view-details">${r.title}</a>
+                </td>
+                <td class="details">
+                    ${r.name}
+                </td>
+                {{else}}
+                <td class="details">
+                    <a href="" onclick="ChipJoin().getCollection('GET', '/${r.type}/'+'${r.uuid}'); $('#data-explorer').show(); return false;" class="view-details">${r.name}</a>
+                </td>
+                {{/if}}
+
+                <td class="view-details">
+                    <a href="" onclick="$('#query-row-${r.uuid}').show(); $('#data-explorer').show(); return false;" class="view-details">View Details</a>
+                </td>
+            </tr>
+
+            <tr id="query-row-${r.uuid}" style="display:none">
+                {{if r.type == 'user'}}
+                <td colspan="5">
+                    {{else r.type == 'group'}}
+                <td colspan="4">
+                    {{else r.type == 'role'}}
+                <td colspan="4">
+                    {{else}}
+                <td colspan="3">
+                    {{/if}}
+                    <div>
+                        <div style="padding-bottom: 10px;">
+                            <button type="button" class="btn btn-small query-button active" id="button-query-show-row-JSON" onclick="ChipJoin().activateQueryRowJSONButton(); $('#query-row-JSON-${r.uuid}').show(); $('#query-row-content-${r.uuid}').hide(); return false;">JSON</button>
+                            <button type="button" class="btn btn-small query-button disabled" id="button-query-show-row-content" onclick="ChipJoin().activateQueryRowContentButton();$('#query-row-content-${r.uuid}').show(); $('#query-row-JSON-${r.uuid}').hide(); return false;">Content</button>
+                        </div>
+                        <div id="query-row-JSON-${r.uuid}">
+                            <pre>${json}</pre>
+                        </div>
+                        <div id="query-row-content-${r.uuid}" style="display:none">
+                            {{html content}}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </script>
     </div>
     <div id="panelUserManagement" style="display: none; padding-top: 34px;">
         <ul id="myTab" class="nav nav-tabs">
@@ -166,55 +372,751 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="tabuser">
                 <a href="#createNewUserModal" class="btn" role="button" data-toggle="modal">Create User</a>
-                <input type="button" class="btn btn-danger" value="Delete User" />
+                <a class="btn btn-danger" data-toggle="modal" id="delete-users-link"> Delete</a>
                 <hr />
                 <div id="newUserFormModal" style="display: none;">
 
                 </div>
                 <div id="listAllUser">
                     <div id="users-table">
-
+                           Loading....
                     </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="tabgroup">
-                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                <a href="#createNewGroupModal" class="btn" role="button" data-toggle="modal">New Group</a>
+                <a class="btn btn-danger" data-toggle="modal" id="delete-groups-link"> Delete</a>
+                 <div id="listAllGroup">
+                    <div id="groups-table">
+                         Loading....
+                    </div>
+                 </div>
             </div>
             <div class="tab-pane fade" id="tabrole">
-                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+                <a href="#createNewRoleModal" class="btn" role="button" data-toggle="modal">Add Role</a>
+                <a class="btn btn-danger" data-toggle="modal" id="delete-roles-link"> Delete</a>
+                <div id="listAllRole">
+                    <div id="roles-table">
+                        Loading....
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div id="panelUserDetailView" style="display: none;padding-top: 34px;">
+    <div id="panelRoleDetailView" style="display: none;padding-top: 34px;">
+        <div>
+            <ul id="myRoleTab" class="nav nav-tabs">
+                <li class="active"><a href="#tabrolesettings" data-toggle="tab">Settings</a></li>
+                <li><a href="#tabroleviewuser" data-toggle="tab">Users</a></li>
+                <li><a href="#tabroleviewgroup" data-toggle="tab">Groups</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tabrolesettings">
+                    <div id="loadRoleDetails">
+                        <div class="console-section">
+                            <div class="well thingy"> <span id="role-section-title" class="title">Administrator Role</span> </div>
+                            <div class="console-section-contents">
+                                <div id="role-permissions-messages" class="alert" style="display: none"></div>
+                                <div id="role-permissions"><h4>Inactivity</h4>
+                                    <form id="role-inactivity-form" class="well form-inline" action="" onsubmit="ChipJoin().editRoleInactivity(); return false;">
+                                        Seconds: <input type="text" name="role-inactivity" id="role-inactivity-input"> &nbsp; Integer only. 0 (zero) means no expiration.   <button type="submit" id="role-inactivity-submit" class="btn btn-primary">Set</button> </form> <div class="alert alert-error" id="inactivity-integer-message" style="display: none;">   Only integers greater than 0 are accepted. </div> <br> <h4>Add Permission Rule</h4> <form id="role-permissions-form" action="" onsubmit="ChipJoin().addRolePermission('admin'); return false;" class="well form-inline" autocomplete="off">   Path: <input id="role-permission-path-entry-input" type="text" name="path" value="/">   <label class="checkbox">     <input id="role-permission-op-get-checkbox" type="checkbox" name="get" value="get">     get </label>   <label class="checkbox">     <input id="role-permission-op-post-checkbox" type="checkbox" name="post" value="post">     post </label>   <label class="checkbox">     <input id="role-permission-op-put-checkbox" type="checkbox" name="put" value="put">     put </label>   <label class="checkbox">     <input id="role-permission-op-delete-checkbox" type="checkbox" name="delete" value="delete">     delete </label>   <button type="submit" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> Add</button> </form> <br> <h4>Permission Rules</h4>  <div class="alert">No Permissions</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade in" id="tabroleviewuser">
+                    <div class="console-section" id="role-users">
+                        <div class="well thingy">
+                            <span id="role-section-title" class="title">Users</span>
+                            <div class="bar">
+                                <a class="btn" data-toggle="modal" href="#" onclick="ChipJoin().deleteRoleFromUser('admin', 'Administrator'); return false;"> Remove </a>
+                                <a style="margin-right: 15px;" class="btn btn-primary" data-toggle="modal" href="#dialog-form-add-role-to-user"> Add </a>
+                                </div>
+                        </div>
+                        <div class="panel-section-message">No Users have this Role</div></div>
+                        <script id="uiForRolesUsers" type="text/html">
+                            <div class="well thingy">
+                                <span id="role-section-title" class="title">Users</span>
+                                <div class="bar">
+                                    <a class="btn" data-toggle="modal" href="#" onclick="ChipJoin().deleteRoleFromUser('${data.roleName}', '${data.roleTitle}'); return false;"> Remove </a>
+                                    <a style="margin-right: 15px;" class="btn btn-primary" data-toggle="modal" href="#dialog-form-add-role-to-user"> Add </a>
+                                </div>
+                            </div>
+                            {{if data.users.length > 0}}
+                            <table class="table" style="margin-top: 30px;">
+                                <tbody>
+                                <tr class="zebraRows users-row">
+                                    <td class="checkboxo">
+                                        <input type="checkbox" onclick="ChipJoin().selectAllEntities(this);" />
+                                    </td>
+                                    <td class="user-details bold-header"></td>
+                                    <td class="user-details bold-header">
+                                        Username
+                                    </td>
+                                    <td class="user-details bold-header">
+                                        Name
+                                    </td>
+                                </tr>
+                                {{each data.users}}
+                                <tr class="zebraRows users-row">
+                                    <td class="checkboxo"><input type="checkbox" name="${name}" class="listItem" value="${uuid}" /></td>
+                                    <td class="gravatar50-td"><img src="{{if picture}}${picture}{{else}}http://${window.location.host + window.location.pathname}images/user-photo.png{{/if}}" class="gravatar50" /></td>
+                                    <td class="details">
+                                        <a href="" onclick="Usergrid.console.pageOpenUserProfile('${username}'); return false;">${username}</a>
+                                    </td>
+                                    <td class="details">{{if name}}${name}{{/if}}</td>
+                                </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                            {{else}}
+                            <div class="panel-section-message">No Users have this Role</div>
+                            {{/if}}
+                        </script>
+                </div>
+                <div class="tab-pane fade in" id="tabroleviewgroup">
+                    <div class="console-section" id="role-panel-groups">
+                        <div class="well thingy">
+                            <span class="title">Groups</span>
+                            <div class="bar">
+                             <a class="btn" data-toggle="modal" href="#" onclick="ChipJoin().removeGroupFromRole('admin', 'Administrator'); return false;"> Remove </a>
+                                <a style="margin-right: 15px;" class="btn btn-primary" data-toggle="modal" href="#dialog-form-add-group-to-role"> Add </a>
+                            </div>
+                        </div>
+                        <div class="panel-section-message">No Group Memberships</div>
+                    </div>
+                    <script id="uiDisplayGroupRoles" type="text/html">
+                        <div class="console-section">
+                            <div class="well thingy">
+                                <span class="title">Groups</span>
+                                <div class="bar">
+                                    <a class="btn" data-toggle="modal" href="#" onclick="ChipJoin().removeGroupFromRole('${roleName}', '${roleTitle}'); return false;"> Remove </a>
+                                    <a style="margin-right: 15px;" class="btn btn-primary" data-toggle="modal" href="#dialog-form-add-group-to-role"> Add </a>
+                                </div>
+                            </div>
+                            {{if entities.length > 0}}
+                            <table class="table" style="margin-top: 30px">
+                                <tbody>
+                                <tr class="zebraRows users-row">
+                                    <td class="checkboxo">
+                                        <input type="checkbox" onclick="ChipJoin().selectAllEntities(this);" />
+                                    </td>
+                                    <td class="user-details bold-header">
+                                        Group Title
+                                    </td>
+                                    <td class="user-details bold-header">
+                                        Group Path
+                                    </td>
+                                </tr>
+                                {{each entities}}
+                                <tr class="zebraRows users-row">
+                                    <td class="checkboxo"><input type="checkbox" name="${path}" class="listItem" value="${path}" /></td>
+                                    <td class="details">
+                                        <a href="" onclick="Usergrid.console.pageOpenGroupProfile('${path}'); return false;">${title}</a>
+                                    </td>
+                                    <td class="details">
+                                        <a href="" onclick="Usergrid.console.pageOpenGroupProfile('${path}'); return false;">${path}</a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                            {{else}}
+                            <div class="panel-section-message">No Group Memberships</div>
+                            {{/if}}
+                        </div>
+                        <div id="group-panel-memberships-curl-container" class="curl-container">
+                        </div>
+                    </script>
+                </div>
+            </div>
+            <script id="checkBoxTemplate" type="text/html">
+                <h4>Inactivity</h4>
+                <form id="role-inactivity-form" class="well form-inline" action="" onsubmit="ChipJoin().editRoleInactivity(); return false;">
+                    Seconds: <input type="text" name="role-inactivity" id="role-inactivity-input" /> &nbsp; Integer only. 0 (zero) means no expiration.
+                    <button type="submit" id="role-inactivity-submit" class="btn btn-primary">Edit</button>
+                </form>
+                <div class="alert alert-error" id="inactivity-integer-message" style="display: none;">
+                    Only integers greater than 0 are accepted.
+                </div>
+                <br />
+                <h4>Add Permission Rule</h4>
+                <form id="role-permissions-form" action="" onsubmit="ChipJoin().addRolePermission('${role}'); return false;" class="well form-inline" autocomplete="off">
+                    Path: <input id="role-permission-path-entry-input" type="text" name="path" value="/" />
+                    <label class="checkbox">
+                        <input id="role-permission-op-get-checkbox" type="checkbox" name="get" value="get"/>
+                        get </label>
+                    <label class="checkbox">
+                        <input id="role-permission-op-post-checkbox" type="checkbox" name="post" value="post"/>
+                        post </label>
+                    <label class="checkbox">
+                        <input id="role-permission-op-put-checkbox" type="checkbox" name="put" value="put"/>
+                        put </label>
+                    <label class="checkbox">
+                        <input id="role-permission-op-delete-checkbox" type="checkbox" name="delete" value="delete"/>
+                        delete </label>
+                    <button type="submit" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> Add</button>
+                </form>
+                <br/>
+                <h4>Permission Rules</h4>
+                {{if permissions}}
+                <table id="role-permissions-table" data-permission="${$index}" class="table table-striped table-bordered table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Path</th>
+                        <th class="role-permission-op">Get</th>
+                        <th class="role-permission-op">Post</th>
+                        <th class="role-permission-op">Put</th>
+                        <th class="role-permission-op">Delete</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{each permissions}}
+                    <tr>
+                        <td class="role-permission-path">${$value.path}</td>
+                        <td class="role-permission-op">{{if $value.ops.get}}<i class="icon-ok"></i>{{/if}}</td>
+                        <td class="role-permission-op">{{if $value.ops.post}}<i class="icon-ok"></i>{{/if}}</td>
+                        <td class="role-permission-op">{{if $value.ops.put}}<i class="icon-ok"></i>{{/if}}</td>
+                        <td class="role-permission-op">{{if $value.ops.delete}}<i class="icon-ok"></i>{{/if}}</td>
+                        <td class="role-permission-delete">
+                            <a onclick="ChipJoin().deleteRolePermission('${role}', '${$value.perm}'); return false;" href="#" class="btn btn-danger"><i class="icon-trash icon-white"></i> Remove</a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+                {{else}}
+                <div class="alert">No Permissions</div>
+                {{/if}}
+            </script>
+        </div>
+    </div>
+    <div id="panelGroupDetailView" style="display: none;padding-top: 34px;">
          <div>
-             <ul id="myProfileTab" class="nav nav-tabs">
-                 <li class="active"><a href="#tabprofile" data-toggle="tab">Profile</a></li>
-                 <li><a href="#tabgroups" data-toggle="tab">Groups</a></li>
-                 <li>
-                     <a href="#tabactivities" data-toggle="tab">Activities</a>
-                 </li>
-                 <li>
-                     <a href="#tabgraph" data-toggle="tab">Graph</a>
-                 </li>
-                 <li>
-                     <a href="#tabroles" data-toggle="tab">Roles & Permission</a>
-                 </li>
+             <ul id="myGroupTab" class="nav nav-tabs">
+                 <li class="active"><a href="#tabgroupview" data-toggle="tab">Details</a></li>
+                 <li><a href="#tabgroupmembers" data-toggle="tab">Members</a></li>
+                 <li><a href="#tabgroupactivities" data-toggle="tab">Activities</a></li>
+                 <li><a href="#tabgrouprolesandpermission" data-toggle="tab">Roles & Permission</a></li>
              </ul>
              <div class="tab-content">
-                 <div class="tab-pane fade in active" id="tabprofile">
-                     <div id="loaduserProfileDetails"></div>
+                 <div class="tab-pane fade in active" id="tabgroupview">
+                     <div id="loadGroupDetails">
+                          Loading....
+                     </div>
                  </div>
-                 <div class="tab-pane fade" id="tabgroups">Goups</div>
-                 <div class="tab-pane fade" id="tabactivities">Activities</div>
-                 <div class="tab-pane fade" id="tabgraph">Graph</div>
-                 <div class="tab-pane fade" id="tabroles">Roles</div>
+                 <div class="tab-pane fade in" id="tabgroupmembers">
+                     <div id="group-panel-memberships">Loading....</div>
+                     <script type="text/html" id="uiForGroupMemberShip">
+                         <div class="console-section">
+                             <div class="well thingy">
+                                 {{if path}}<span class="title" href="" onclick="return false;">{{/if}}
+                                  ${name}
+                                {{if path}}</span>{{/if}}
+
+                                 <div class="bar">
+                                     <a class="btn " data-toggle="modal" onclick="ChipJoin().removeGroupFromUser('${uuid}'); return false;">Remove</a>
+                                     <a style="margin-right: 15px;" class="btn btn-primary" data-toggle="modal" href="#dialog-form-add-user-to-group">Add user</a>
+                                     <input type="hidden" value="${uuid}" id="search-user-groupid" name="search-user-groupid">
+                                 </div>
+                             </div>
+
+                             {{if memberships}}
+                             <table class="table" style="margin-top: 30px">
+                                 <tbody>
+                                 <tr class="zebraRows users-row">
+                                     <td class="checkboxo">
+                                         <input type="checkbox" onclick="ChipJoin().selectAllEntities(this);" />
+                                     </td>
+                                     <td class="user-details bold-header">
+                                         User Name
+                                     </td>
+                                 </tr>
+                                 {{each memberships}}
+                                 <tr class="zebraRows users-row">
+                                     <td class="checkboxo"><input type="checkbox" name="${name}" class="listItem" value="${$value.uuid}" /></td>
+                                     <td class="details">
+                                         <a href="#" onclick="return false;">${username}:${name}</a>
+                                     </td>
+                                 </tr>
+                                 {{/each}}
+                                 </tbody>
+                             </table>
+                             {{else}}
+                             <div class="panel-section-message">No Group Memberships</div>
+                             {{/if}}
+                         </div>
+                         <div id="group-panel-memberships-curl-container" class="curl-container">
+                         </div>
+                     </script>
+                 </div>
+                 <div class="tab-pane fade in" id="tabgroupactivities">
+                     <div id="group-panel-activities">Loading....</div>
+                     <script type="text/html" id="uiForGroupActivities">
+                         <div class="console-section">
+                             <div class="well thingy">
+                                 {{if path}}<span class="title" href="" onclick="return false;">{{/if}}
+      ${name}
+    {{if path}}</span>{{/if}}
+                             </div>
+                             {{if activities}}
+                             {{each activities}}
+                             <table>
+                                 <tr>
+                                     <td>
+                                         ${$index + 1}: ${$value.actor.displayName} (${$value.actor.email})
+                                     </td>
+                                     <td>
+                                         ${$value.content}
+                                     </td>
+                                     <td>
+                                         ${$value.verb}:
+                                     </td>
+                                 </tr>
+                             </table>
+                             {{/each}}
+                             {{else}}
+                             <div class="panel-section-message">No Group Activities</div>
+                             {{/if}}
+                         </div>
+                         <div id="group-panel-activities-curl-container" class="curl-container">
+                         </div>
+                     </script>
+                 </div>
+                 <div class="tab-pane fade in" id="tabgrouprolesandpermission">
+                     <div id="group-panel-permissions">Loading....</div>
+                     <script type="text/html" id="uiForGroupRolesandPermission">
+                         <div class="console-section">
+                             <div class="well thingy">
+                                 <span class="title">${name}</span>
+                                 <div class="bar">
+                                     <a class="btn" data-toggle="modal" href="#" onclick="ChipJoin().deleteRolesFromGroup(''); return false;"> Remove </a>
+                                     <a style="margin-right: 15px;" class="btn btn-primary" data-toggle="modal" href="#dialog-form-add-role-to-group"> Add role </a>
+                                 </div>
+                             </div>
+                             <div class="console-section-contents">
+                                 <div class="user-panel-section">
+                                     <div class="user-roles-title">Roles </div>
+                                     {{if roles}}
+                                     {{if roles.length > 0}}
+                                     <table class="table table-bordered groups-permissions-response-table">
+                                         <tbody>
+                                         <tr class="zebraRows users-row">
+                                             <td class="checkboxo">
+                                                 <input type="checkbox" onclick="ChipJoin().selectAllEntities(this);" />
+                                             </td>
+                                             <td class="user-details bold-header">
+                                                 Group Name
+                                             </td>
+                                         </tr>
+                                         {{each roles}}
+                                         <tr class="zebraRows users-row">
+                                             <td class="checkboxo"><input type="checkbox" name="${name}" class="listItem" value="${name}" /></td>
+                                             <td class="details">
+                                                 {{if path}}<a href="" onclick="return false;">{{/if}}
+                                                 ${title}
+                                                 (${name})
+                                                 {{if path}}</a>{{/if}}
+                                             </td>
+                                         </tr>
+                                         {{/each}}
+                                         </tbody>
+                                     </table>
+                                     {{else}}
+                                     <div class="panel-section-message">No Roles</div>
+                                     {{/if}}
+                                     {{/if}}
+                                     <div id="group-panel-roles-curl-container" class="curl-container">
+                                     </div>
+                                     <br/>
+                                     <div class="user-roles-title">Permissions </div>
+                                     <h4>Add Permission Rule</h4>
+                                     <form id="role-permissions-form" action="" onsubmit="ChipJoin().addGroupPermission('${name}'); return false;" class="well form-inline" autocomplete="off">
+                                         Path: <input id="group-permission-path-entry-input" type="text" name="path" value="/" />
+                                         <label class="checkbox">
+                                             <input id="group-permission-op-get-checkbox" type="checkbox" name="get" value="get"/>
+                                             get </label>
+                                         <label class="checkbox">
+                                             <input id="group-permission-op-post-checkbox" type="checkbox" name="post" value="post"/>
+                                             post </label>
+                                         <label class="checkbox">
+                                             <input id="group-permission-op-put-checkbox" type="checkbox" name="put" value="put"/>
+                                             put </label>
+                                         <label class="checkbox">
+                                             <input id="group-permission-op-delete-checkbox" type="checkbox" name="delete" value="delete"/>
+                                             delete </label>
+                                         <button type="submit" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> Add</button >
+                                     </form>
+                                     <br/>
+                                     <h4>Permission Rules</h4>
+                                     {{if permissions}}
+                                     <table id="role-permissions-table" data-permission="${$index}" class="table table-striped table-bordered table-condensed">
+                                         <thead>
+                                         <tr>
+                                             <th>Path</th>
+                                             <th class="role-permission-op">Get</th>
+                                             <th class="role-permission-op">Post</th>
+                                             <th class="role-permission-op">Put</th>
+                                             <th class="role-permission-op">Delete</th>
+                                             <th></th>
+                                         </tr>
+                                         </thead>
+                                         <tbody>
+                                         {{each permissions}}
+                                         <tr>
+                                             <td class="role-permission-path">${$value.path}</td>
+                                             <td class="role-permission-op">{{if $value.ops.get}}<i class="icon-ok"></i>{{/if}}</td>
+                                             <td class="role-permission-op">{{if $value.ops.post}}<i class="icon-ok"></i>{{/if}}</td>
+                                             <td class="role-permission-op">{{if $value.ops.put}}<i class="icon-ok"></i>{{/if}}</td>
+                                             <td class="role-permission-op">{{if $value.ops.delete}}<i class="icon-ok"></i>{{/if}}</td>
+                                             <td class="role-permission-delete">
+                                                 <a onclick="ChipJoin().deleteGroupPermission('${name}', '${$value.perm}'); return false;" href="#" class="btn btn-danger"><i class="icon-trash icon-white"></i> Remove</a>
+                                             </td>
+                                         </tr>
+                                         {{/each}}
+                                         </tbody>
+                                     </table>
+                                     {{else}}
+                                     <div class="alert">No Permissions</div>
+                                     {{/if}}
+                                     <div id="group-panel-permissions-curl-container" class="curl-container">
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <input type="hidden" name="role-form-groupname" id="role-form-groupname" value="${name}"/>
+                     </script>
+                 </div>
              </div>
          </div>
+    </div>
+    <div id="panelGroupDetailEdit" style="display: none; padding-top: 34px;">
+        <div id="panelGroupDetailEditHolder">
+            Loading....
+        </div>
     </div>
     <div id="panelUserDetailEdit" style="display: none; padding-top: 34px;">
            <div id="panelUserDetailEditHolder">
                Loading....
            </div>
+    </div>
+    <div id="panelUserDetailView" style="display: none;padding-top: 34px;">
+        <div>
+            <ul id="myProfileTab" class="nav nav-tabs">
+                <li class="active"><a href="#tabprofile" data-toggle="tab">Profile</a></li>
+                <li><a href="#tabgroups" data-toggle="tab">Groups</a></li>
+                <li>
+                    <a href="#tabactivities" data-toggle="tab">Activities</a>
+                </li>
+                <li>
+                    <a href="#tabgraph" data-toggle="tab">Graph</a>
+                </li>
+                <li>
+                    <a href="#tabroles" data-toggle="tab">Roles & Permission</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tabprofile">
+                    <div id="loaduserProfileDetails">
+                         Loading....
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tabgroups">
+                    <div id="user-panel-memberships">
+                          Loading....
+                    </div>
+                    <script type="text/html" id="userPanelMemberShip">
+                        <div class="console-section">
+                            <div class="well thingy">
+                                {{if picture}}<img src="${picture}" class="user-profile-picture" />{{/if}}
+                                <div class="title">
+                                    {{if path}}<a href="" onclick="return false;">{{/if}}${name}{{if path}}</a>{{/if}}
+                                </div>
+                                <div class="bar">
+                                    <a class="btn " data-toggle="modal" onclick="ChipJoin().removeUserFromGroup('${username}'); return false;">Remove</a>
+                                    <a style="margin-right: 15px;" class="btn btn-primary" data-toggle="modal" href="#dialog-form-add-group-to-user">Add to a Group</a>
+                                    <input type="hidden" value="${username}" id="search-group-userid" name="search-group-userid">
+                                </div>
+                            </div>
+
+                            {{if memberships}}
+                            <table class="table" style="margin-top: 30px">
+                                <tbody>
+                                <tr class="zebraRows users-row">
+                                    <td class="checkboxo">
+                                        <input type="checkbox" onclick="ChipJoin().selectAllEntities(this);" />
+                                    </td>
+                                    <td class="user-details bold-header">
+                                        Group Name
+                                    </td>
+                                </tr>
+                                {{each memberships}}
+                                <tr class="zebraRows users-row">
+                                    <td class="checkboxo"><input type="checkbox" name="${name}" class="listItem" value="${$value.uuid}" /></td>
+                                    <td class="details">
+                                        <a href="#" onclick="return false;">${$value.path}</a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                            {{else}}
+                            <div class="panel-section-message">no group memberships</div>
+                            {{/if}}
+                        </div>
+                        <div id="user-panel-memberships-curl-container" class="curl-container">
+                        </div>
+                    </script>
+                </div>
+                <div class="tab-pane fade" id="tabactivities">
+                    <div id="user-panel-activities">
+                        Loading....
+                    </div>
+                    <script type="text/html" id="uiForUserActivities">
+                        <div class="console-section">
+                            <div class="well thingy">
+                                {{if picture}}<img src="${picture}" class="user-profile-picture" />{{/if}}
+                                <div class="title">
+                                    {{if path}}<a href="" onclick="return false;">{{/if}}
+                                    ${name}
+                                    {{if path}}</a>{{/if}}
+                                </div>
+                            </div>
+                            {{if activities}}
+                            <table class="activities-table table">
+                                {{each activities}}
+                                <tr class="">
+                                    <td>
+                                        <a href="#" class="toggleableSP">${dateToString($value.created)}</a>
+                                        <a href="#" class="toggleableSP hide">${$value.created}</a>
+                                    </td>
+                                    <td>
+                                        ${$value.content}
+                                    </td>
+                                    <td>
+                                        {{if $value.actor.username}}
+                                        <a href="#" onclick="return false;">${$value.actor.displayName} {{if $value.actor.email}} (${$value.actor.email}) {{/if}}</a>
+                                        {{else}}
+                                        ${$value.actor.displayName} {{if $value.actor.email}} (${$value.actor.email}) {{/if}}
+                                        {{/if}}
+                                    </td>
+                                    <td>
+                                        ${$value.verb}
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </table>
+                            {{else}}
+                            <div class="panel-section-message">No User Activities</div>
+                            {{/if}}
+                        </div>
+                        <div id="user-panel-activities-curl-container" class="curl-container">
+                        </div>
+
+                    </script>
+                </div>
+                <div class="tab-pane fade" id="tabgraph">
+                    <div id="user-panel-graph">
+                        Loading....
+                    </div>
+                    <script type="text/html" id="uiForUserPanelGraph">
+                        <div class="console-section">
+                            <div class="well thingy">
+                                {{if picture}}<img src="${picture}" class="user-profile-picture" />{{/if}}
+                                <div class="title">
+                                    {{if path}}<a href="" onclick="return false;">{{/if}}${name}{{if path}}</a>{{/if}}
+                                </div>
+                                <div class="bar">
+                                    <a class="btn btn-primary" data-toggle="modal" href="#dialog-form-follow-user">Follow User</a>
+                                    <input type="hidden" value="${username}" id="search-follow-username" name="search-follow-userid">
+                                </div>
+                            </div>
+
+                            <div class="console-section-contents">
+                                <div class="user-roles-title">Following </div>
+                                <div class="user-panel-section">
+                                    {{if following}}
+                                    {{if following.length > 0}}
+                                    <div class="query-result-row entity_list_item" id="users-roles-following-table">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                            {{each following}}
+                                            <tr class="zebraRows">
+                                                <td class="query-result-td-header-name">
+                                                    <div class="query-result-header-name query-result-picture-vert-offset">
+                                                        {{if path}}
+                                                        <a href="" onclick="return false;">
+                                                            <span class="user-role-row-name">${username}</span>
+                                                            <span class="user-role-row-title"><a href="mailto:${email}">${email}</a></span>
+                                                        </a>
+                                                        {{/if}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {{/if}}
+                                    {{else}}
+                                    <div class="panel-section-message">Not following anyone</div>
+                                    {{/if}}
+                                    <br/>
+                                </div>
+                                <div id="user-panel-following-curl-container" class="curl-container">
+                                </div>
+                                <br/>
+                                <div class="user-roles-title">Followers </div>
+                                <div class="user-panel-section">
+                                    {{if followers}}
+                                    {{if followers.length > 0}}
+                                    <div class="query-result-row entity_list_item" id="users-roles-followed-table">
+                                        <table class="table table-bordered">
+                                            <tbody>
+                                            {{each followers}}
+                                            <tr class="zebraRows">
+                                                <td class="query-result-td-header-name">
+                                                    <div class="query-result-header-name query-result-picture-vert-offset">
+                                                        {{if path}}
+                                                        <a href="" onclick="return false;">
+                                                            <span class="user-role-row-name">${username}</span>
+                                                            <span class="user-role-row-title"><a href="mailto:${email}">${email}</a></span>
+                                                        </a>
+                                                        {{/if}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {{/if}}
+                                    {{else}}
+                                    <div class="panel-section-message">No followers</div>
+                                    {{/if}}
+                                    <br/>
+                                </div>
+                                <div id="user-panel-followers-curl-container" class="curl-container">
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+                <div class="tab-pane fade" id="tabroles">
+                    <div id="user-panel-permissions">
+                        Loading....
+                    </div>
+                    <script id="uiForUserPanelPermissions" type="text/html">
+                        <div class="console-section">
+                            <div class="well thingy">
+                                {{if picture}}<img src="${picture}" class="user-profile-picture" />{{/if}}
+                                <div class="title">
+                                    {{if path}}<a href="" onclick="return false;">{{/if}}
+                                    ${name}
+                                    {{if path}}</a>{{/if}}
+                                </div>
+                                <div class="bar">
+                                    <a class="btn" data-toggle="modal" href="#" onclick="ChipJoin().deleteUsersFromRoles('${username}'); return false;"> Remove </a>
+                                    <a style="margin-right: 15px;" class="btn btn-primary" data-toggle="modal" href="#dialog-form-add-user-to-role"> Add role</a>
+                                </div>
+                            </div>
+                            <div class="console-section-contents">
+                                <div class="user-panel-section">
+                                    <div class="user-roles-title">Roles </div>
+                                    {{if roles}}
+                                    {{if roles.length > 0}}
+                                    <table class="table table-bordered users-permissions-response-table" id="users-permissions-response-table">
+                                        <tbody>
+                                        <tr class="zebraRows users-row">
+                                            <td class="checkboxo">
+                                                <input type="checkbox" onclick="ChipJoin().selectAllEntities(this);" />
+                                            </td>
+                                            <td class="user-details bold-header">
+                                                Group Name
+                                            </td>
+                                        </tr>
+
+                                        {{each roles}}
+                                        <tr class="zebraRows users-row">
+                                            <td class="checkboxo"><input type="checkbox" name="${title}" class="listItem" value="${name}" /></td>
+                                            <td class="details">
+                                                {{if path}}<a href="" onclick="return false;">{{/if}}
+                                                ${title}
+                                                (${name})
+                                                {{if path}}</a>{{/if}}
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                    {{/if}}
+                                    {{else}}
+                                    <div class="panel-section-message">No Roles</div>
+                                    {{/if}}
+                                    <br/>
+                                    <div id="user-panel-roles-curl-container" class="curl-container">
+                                    </div>
+                                    <div class="user-roles-title">Permissions </div>
+                                    <h4>Add Permission Rule</h4>
+                                    <form id="role-permissions-form" action="" onsubmit="ChipJoin().addUserPermission('${username}'); return false;" class="well form-inline" autocomplete="off">
+                                        Path: <input id="user-permission-path-entry-input" type="text" name="path" value="/" />
+                                        <label class="checkbox">
+                                            <input id="user-permission-op-get-checkbox" type="checkbox" name="get" value="get"/>
+                                            get </label>
+                                        <label class="checkbox">
+                                            <input id="user-permission-op-post-checkbox" type="checkbox" name="post" value="post"/>
+                                            post </label>
+                                        <label class="checkbox">
+                                            <input id="user-permission-op-put-checkbox" type="checkbox" name="put" value="put"/>
+                                            put </label>
+                                        <label class="checkbox">
+                                            <input id="user-permission-op-delete-checkbox" type="checkbox" name="delete" value="delete"/>
+                                            delete </label>
+                                        <button type="submit" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> Add</button >
+                                    </form>
+                                    <br/>
+                                    <h4>Permission Rules</h4>
+                                    {{if permissions}}
+                                    <table id="role-permissions-table" data-permission="${$index}" class="table table-striped table-bordered table-condensed">
+                                        <thead>
+                                        <tr>
+                                            <th>Path</th>
+                                            <th class="role-permission-op">Get</th>
+                                            <th class="role-permission-op">Post</th>
+                                            <th class="role-permission-op">Put</th>
+                                            <th class="role-permission-op">Delete</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{each permissions}}
+                                        <tr>
+                                            <td class="role-permission-path">${$value.path}</td>
+                                            <td class="role-permission-op">{{if $value.ops.get}}<i class="icon-ok"></i>{{/if}}</td>
+                                            <td class="role-permission-op">{{if $value.ops.post}}<i class="icon-ok"></i>{{/if}}</td>
+                                            <td class="role-permission-op">{{if $value.ops.put}}<i class="icon-ok"></i>{{/if}}</td>
+                                            <td class="role-permission-op">{{if $value.ops.delete}}<i class="icon-ok"></i>{{/if}}</td>
+                                            <td class="role-permission-delete">
+                                                <a onclick="ChipJoin().deleteUserPermission('${username}', '${$value.perm}'); return false;" href="#" class="btn btn-danger"><i class="icon-trash icon-white"></i> Remove</a>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                    {{else}}
+                                    <div class="alert">No Permissions</div>
+                                    {{/if}}
+                                    <div id="user-panel-permissions-curl-container" class="curl-container">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="role-form-username" id="role-form-username" value="${$data.entity.username}"/>
+                    </script>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -249,6 +1151,30 @@
 
 </div><!--/.fluid-container-->
 
+<div id="createNewRoleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabelcreateNewRoleModal" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabelcreateNewRoleModal">New Role</h3>
+    </div>
+    <div class="modal-body">
+            <div class="control-group">
+                <label for="new-role-title">Display Name</label>
+                <div class="controls">
+                    <input type="text" name="title" id="new-role-title" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="new-role-name">Name</label>
+                <div class="controls">
+                    <input type="text" name="name" id="new-role-name" class="input-xlarge">
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="createNewRole()">Create Role</button>
+    </div>
+</div>
 <div id="newApplicationModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -260,6 +1186,53 @@
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         <button class="btn btn-primary" ng-click="createApplication()">Create Application</button>
+    </div>
+</div>
+<div id="dialog-form-new-collection" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel87952">Create New Collection</h3>
+    </div>
+    <div class="modal-body">
+        <p class="validateTips">All form fields are required.</p>
+        <form id="dialog-form-new-collection-form">
+            <fieldset>
+                <div class="control-group">
+                    <label for="new-collection-name">Name</label>
+                    <div class="controls">
+                        <input type="text" name="name" id="new-collection-name" value="" class="input-xlarge">
+                        <p class="help-block hide" style="display: none;"></p>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="submitNewCollection()">Create Collection</button>
+    </div>
+</div>
+<div id="dialog-form-add-user-to-group" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel859">Add a user to this group</h3>
+    </div>
+    <div class="modal-body">
+        <p class="validateTips">Search for the user you want to add to this group.</p>
+        <fieldset>
+            <div class="control-group">
+                <label for="search-user-name-input">User</label>
+                <div class="controls">
+                    <input type="text" name="search-user-name-input" id="search-user-name-input" class="input-xlarge" autocomplete="off">
+                    <p class="help-block hide" style="display: none;"></p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="submitAddUserToGroup()">Add</button>
     </div>
 </div>
 <div id="createOrgNewModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -287,6 +1260,139 @@
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         <button class="btn btn-primary" ng-click="createNewAdmin()">Create Admin</button>
+    </div>
+</div>
+<div id="dialog-form-add-role-to-group" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel5857">Add Role to this group</h3>
+    </div>
+    <div class="modal-body">
+        <p class="validateTips">Search for the role you want to add to this group.</p>
+        <fieldset>
+            <div class="control-group">
+                <label for="search-groups-role-name-input">Role</label>
+                <div class="controls">
+                    <input type="text" name="search-groups-role-name-input" id="search-groups-role-name-input" class="input-xlarge" autocomplete="off">
+                    <p class="help-block hide" style="display: none;"></p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="submitAddRoleToGroup()">Add</button>
+    </div>
+</div>
+<div id="dialog-form-add-user-to-role" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel287">Add this user to role</h3>
+    </div>
+    <div class="modal-body">
+        <p class="validateTips">Search for the role you want to add to this user.</p>
+        <fieldset>
+            <div class="control-group">
+                <label for="search-role-name-input">Role</label>
+                <div class="controls">
+                    <input type="text" name="search-role-name-input" id="search-role-name-input" class="input-xlarge">
+                    <p class="help-block hide" style="display: none;"></p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="submitAddRoleToGroups()">Add</button>
+    </div>
+</div>
+<div id="dialog-form-follow-user" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel285">Follow this User</h3>
+    </div>
+    <div class="modal-body">
+        <p class="validateTips">Search for the user you want to Follow.</p>
+        <fieldset>
+            <div class="control-group">
+                <label for="search-follow-username-input">User</label>
+                <div class="controls">
+                    <input type="text" name="search-follow-username-input" id="search-follow-username-input" class="input-xlarge">
+                    <p class="help-block hide" style="display: none;"></p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="submitFollowUser()">Follow</button>
+    </div>
+</div>
+<div id="dialog-form-add-group-to-user" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel85">Add this user to Group</h3>
+    </div>
+    <div class="modal-body">
+        <p class="validateTips">Search for the group you want to add this user to.</p>
+        <fieldset>
+            <div class="control-group">
+                <label for="search-group-name-input">Group</label>
+                <div class="controls">
+                    <input type="text" name="search-group-name-input" id="search-group-name-input" class="input-xlarge">
+                    <p class="help-block hide" style="display: none;"></p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="submitAddGroupToUser()">Add</button>
+    </div>
+</div>
+<div id="dialog-form-add-role-to-user" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel4">Add Role</h3>
+    </div>
+    <div class="modal-body">
+        <p class="validateTips">
+            Search for the user you want to add to this role.</p>
+        <fieldset>
+            <div class="control-group">
+                <label for="search-roles-user-name-input">User</label>
+                <div class="controls">
+                    <input type="text" name="search-roles-user-name-input" id="search-roles-user-name-input" class="input-xlarge" />
+                    <p class="help-block hide"></p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="submitAddRoleToUser()">Add</button>
+    </div>
+</div>
+<div id="dialog-form-add-group-to-role" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel5">Add Role</h3>
+    </div>
+    <div class="modal-body">
+        <p class="validateTips">Search for the group you want to add to this role.</p>
+        <fieldset>
+            <div class="control-group">
+                <label for="search-roles-group-name-input">Group</label>
+                <div class="controls">
+                    <input type="text" name="search-roles-group-name-input" id="search-roles-group-name-input" class="input-xlarge" autocomplete="off">
+                    <p class="help-block hide" style="display: none;"></p>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" ng-click="submitAddGroupToRole()">Add</button>
     </div>
 </div>
 
@@ -341,6 +1447,36 @@
         <button class="btn btn-primary" id="btnCreateUserBtn"   ng-click="createNewUser()">Create User</button>
     </div>
 </div>
+<div id="createNewGroupModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalGroupManagementModal" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalGroupManagementModal">New Group</h3>
+    </div>
+    <div class="modal-body">
+
+        <fieldset>
+            <div class="control-group">
+                <label for="new-group-title">Display Name</label>
+                <div class="controls">
+                    <input type="text" name="title" id="new-group-title" value="" class="input-xlarge">
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="new-group-path">Group Path</label>
+                <div class="controls">
+                    <input type="text" name="path" id="new-group-path" value="" class="input-xlarge">
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn"  data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" id="btnCreateGroupBtn"  ng-click="createNewGroup()">Create Group</button>
+    </div>
+</div>
+
+
 <div id="manageOrganizationModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

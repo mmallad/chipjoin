@@ -114,16 +114,8 @@ _ChipJoin.prototype.oo = function(s,f)
             {
                 Usergrid.ApiClient.setApplicationName(ChipJoin().getCookie("appName"));
             }
-            ChipJoin().runAppQuery(new Usergrid.Query("GET","credentials", null, null,
-                function(response) {
-                    $("#userCred").html('<tr><td>'+response.credentials.client_id+'</td><td>'+response.credentials.client_secret+'</td></tr>');
-                },
-                function(response) {
 
-                    //TODO Show Error
-                    $("#userCred").html('<tr><td colspan="2">'+ChipJoin().ErrorMsg("Could not load credentials.")+'</td></tr>');
-                }
-            ));
+
         },
         function(response){
             alert("Oops Something went wrong.");

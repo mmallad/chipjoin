@@ -4,15 +4,15 @@
     <list default="true" id="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" name="Default" comment="" />
     <ignored path="ChipJoin.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/index.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1372053044008" ignored="false" />
-    <file path="/App.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373277545439" ignored="false" />
-    <file path="/AppController.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1372049328495" ignored="false" />
-    <file path="/login.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1371554211213" ignored="false" />
-    <file path="/Init.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373278215081" ignored="false" />
-    <file path="/dashboard.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373264325524" ignored="false" />
-    <file path="/register.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1371554713649" ignored="false" />
-    <file path="/Services.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1371810172005" ignored="false" />
-    <file path="/console.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1371642335879" ignored="false" />
+    <file path="/index.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373869060039" ignored="false" />
+    <file path="/App.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373958291480" ignored="false" />
+    <file path="/AppController.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373959823645" ignored="false" />
+    <file path="/login.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373868559039" ignored="false" />
+    <file path="/Init.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373953352521" ignored="false" />
+    <file path="/dashboard.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373956131835" ignored="false" />
+    <file path="/register.html" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373950676342" ignored="false" />
+    <file path="/Services.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373870884362" ignored="false" />
+    <file path="/console.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1373359221108" ignored="false" />
     <file path="/a.dummy" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1372053001701" ignored="false" />
     <file path="/navBinder.js" changelist="f6ef19f2-5407-4f82-b9b6-cfb6ea0ecf31" time="1372053252374" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,35 +75,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AppController.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AppController.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/kernel/AppController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="214" column="31" selection-start="9418" selection-end="9418" vertical-scroll-proportion="0.0">
+            <state line="241" column="54" selection-start="10656" selection-end="10656" vertical-scroll-proportion="0.79744524">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/kernel/Services.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="45" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="213" column="13" selection-start="9309" selection-end="9309" vertical-scroll-proportion="-7.625">
-              <folding>
-                <element signature="tag#div#0;tag#div#0;tag#div#1;tag#div#0;tag#div#1" expanded="false" />
-                <element signature="tag#div#1;tag#div#0;tag#div#1;tag#div#0;tag#div#1" expanded="false" />
-                <element signature="tag#div#2;tag#div#0;tag#div#1;tag#div#0;tag#div#1" expanded="false" />
-                <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="tag#div#3;tag#div#0;tag#div#1;tag#div#0;tag#div#1" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -111,57 +87,56 @@
       <file leaf-file-name="App.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/kernel/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="213" column="93" selection-start="10919" selection-end="10919" vertical-scroll-proportion="0.0">
+            <state line="717" column="51" selection-start="32611" selection-end="32611" vertical-scroll-proportion="-12.392858">
               <folding>
-                <marker date="1373277684308" expanded="true" signature="4662:4682" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7444:7728" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7444:7447" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7444:7447" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7444:7447" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7444:7533" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7444:7577" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7444:7652" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7444:7668" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7578:7652" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7786:7994" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="7912:7994" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="8108:8320" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="8236:8320" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="8435:8647" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="8563:8647" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="8760:8982" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="8893:8982" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="9104:9326" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="9237:9326" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="9448:9656" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="9574:9656" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="9777:9989" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="9905:9989" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="10111:10315" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="10235:10315" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="10435:10655" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="10567:10655" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="10779:10893" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="10779:11088" placeholder="..." />
-                <marker date="1373277684308" expanded="true" signature="10823:10893" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="15105:15125" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="17887:18111" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="18021:18111" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="18229:18437" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="18355:18437" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="18551:18763" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="18679:18763" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="18878:19090" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="19006:19090" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="19203:19425" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="19336:19425" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="19547:19769" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="19680:19769" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="19891:20099" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="20017:20099" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="20220:20432" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="20348:20432" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="20554:20758" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="20678:20758" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="20878:21098" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="21010:21098" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="21222:21531" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="21266:21531" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="43195:43215" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="45292:45522" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="45429:45522" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="45631:45861" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="45765:45861" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="45971:46276" placeholder="..." />
+                <marker date="1373958704203" expanded="true" signature="46015:46276" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.js">
+      <file leaf-file-name="Services.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/kernel/Services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="2" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0">
+            <state line="116" column="0" selection-start="5611" selection-end="5611" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Init.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Init.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/kernel/Init.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="46" selection-start="4068" selection-end="4068" vertical-scroll-proportion="0.6510417">
+            <state line="705" column="257" selection-start="29210" selection-end="29226" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -170,11 +145,17 @@
       <file leaf-file-name="console.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/app/console.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2176" column="16" selection-start="74082" selection-end="74082" vertical-scroll-proportion="-11.857142">
-              <folding>
-                <marker date="1372054717194" expanded="false" signature="8830:8849" placeholder="..." />
-                <marker date="1372054717194" expanded="false" signature="17408:17418" placeholder="..." />
-              </folding>
+            <state line="3151" column="0" selection-start="108757" selection-end="108925" vertical-scroll-proportion="-7.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1028" column="141" selection-start="63200" selection-end="63200" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -191,17 +172,17 @@
       <list>
         <option value="$PROJECT_DIR$/login.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/templates/login.html" />
-        <option value="$PROJECT_DIR$/templates/register.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/kernel/navBinder.js" />
-        <option value="$PROJECT_DIR$/js/kernel/AppController.js" />
-        <option value="$PROJECT_DIR$/js/kernel/Services.js" />
-        <option value="$PROJECT_DIR$/js/app/console.js" />
         <option value="$PROJECT_DIR$/config.js" />
+        <option value="$PROJECT_DIR$/js/app/console.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/templates/login.html" />
+        <option value="$PROJECT_DIR$/js/kernel/Services.js" />
+        <option value="$PROJECT_DIR$/templates/register.html" />
+        <option value="$PROJECT_DIR$/js/kernel/Init.js" />
         <option value="$PROJECT_DIR$/templates/dashboard.html" />
         <option value="$PROJECT_DIR$/js/kernel/App.js" />
-        <option value="$PROJECT_DIR$/js/kernel/Init.js" />
+        <option value="$PROJECT_DIR$/js/kernel/AppController.js" />
       </list>
     </option>
   </component>
@@ -242,6 +223,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -260,10 +242,73 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChipJoin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChipJoinUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChipJoin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChipJoinUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChipJoin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChipJoinUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kernel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChipJoin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChipJoinUi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -280,6 +325,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/js/lib" />
+      <recent name="$PROJECT_DIR$/templates" />
     </key>
   </component>
   <component name="RunManager">
@@ -389,6 +435,26 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="true" />
@@ -405,12 +471,12 @@
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.53958" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933652" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17905675" sideWeight="0.6704362" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2326139" sideWeight="0.46042004" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -480,145 +546,133 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/app/helpers.js">
+    <entry file="file://$PROJECT_DIR$/js/app/status.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="107" selection-start="109" selection-end="110" vertical-scroll-proportion="0.023722628" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/app/session.js">
+    <entry file="file://$PROJECT_DIR$/templates/chipjoin.ui.panels.role.permissions.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="12" selection-start="188" selection-end="189" vertical-scroll-proportion="-1.5204991">
+        <state line="10" column="88" selection-start="647" selection-end="656" vertical-scroll-proportion="0.14611006">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app/usergrid.appSDK.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="11" selection-start="1581" selection-end="1582" vertical-scroll-proportion="0.3850365">
-          <folding />
-        </state>
+        <state line="23" column="25" selection-start="911" selection-end="911" vertical-scroll-proportion="-0.8072917" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/lib/MD5.min.js">
+    <entry file="file://$PROJECT_DIR$/js/lib/prettify.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login.html">
+    <entry file="file://$PROJECT_DIR$/js/custom.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="25" selection-start="343" selection-end="359" vertical-scroll-proportion="-5.625">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-5.15625" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../ThingsPanelUi/index.html">
+    <entry file="file://$PROJECT_DIR$/js/apigee/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="582" column="22" selection-start="31599" selection-end="33711" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="68" selection-start="2354" selection-end="2354" vertical-scroll-proportion="0.41666666">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../ThingsPanelTemplate/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="332" column="62" selection-start="14071" selection-end="14071" vertical-scroll-proportion="0.027173912" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/kernel/navBinder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/kernel/AppController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="214" column="31" selection-start="9418" selection-end="9418" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.140625" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="2" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0">
+        <state line="1" column="2" selection-start="33" selection-end="33" vertical-scroll-proportion="0.025466893" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="51" selection-start="2219" selection-end="2219" vertical-scroll-proportion="0.43362832">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/kernel/Services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="0" selection-start="5611" selection-end="5611" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="49" selection-start="2106" selection-end="2106" vertical-scroll-proportion="0.027173912">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="52" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.027173912">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/kernel/Init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="705" column="257" selection-start="29210" selection-end="29226" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="13" selection-start="9309" selection-end="9309" vertical-scroll-proportion="-7.625">
-          <folding>
-            <element signature="tag#div#0;tag#div#0;tag#div#1;tag#div#0;tag#div#1" expanded="false" />
-            <element signature="tag#div#1;tag#div#0;tag#div#1;tag#div#0;tag#div#1" expanded="false" />
-            <element signature="tag#div#2;tag#div#0;tag#div#1;tag#div#0;tag#div#1" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="tag#div#3;tag#div#0;tag#div#1;tag#div#0;tag#div#1" expanded="false" />
-          </folding>
+        <state line="1028" column="141" selection-start="63200" selection-end="63200" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app/console.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2176" column="16" selection-start="74082" selection-end="74082" vertical-scroll-proportion="-11.857142">
-          <folding>
-            <marker date="1372054717194" expanded="false" signature="8830:8849" placeholder="..." />
-            <marker date="1372054717194" expanded="false" signature="17408:17418" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/kernel/Services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="45" selection-start="313" selection-end="313" vertical-scroll-proportion="0.0">
+        <state line="3151" column="0" selection-start="108757" selection-end="108925" vertical-scroll-proportion="-7.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/kernel/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="93" selection-start="10919" selection-end="10919" vertical-scroll-proportion="0.0">
+        <state line="717" column="51" selection-start="32611" selection-end="32611" vertical-scroll-proportion="-12.392858">
           <folding>
-            <marker date="1373277684308" expanded="true" signature="4662:4682" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7444:7728" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7444:7447" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7444:7447" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7444:7447" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7444:7533" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7444:7577" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7444:7652" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7444:7668" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7578:7652" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7786:7994" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="7912:7994" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="8108:8320" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="8236:8320" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="8435:8647" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="8563:8647" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="8760:8982" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="8893:8982" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="9104:9326" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="9237:9326" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="9448:9656" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="9574:9656" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="9777:9989" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="9905:9989" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="10111:10315" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="10235:10315" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="10435:10655" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="10567:10655" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="10779:10893" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="10779:11088" placeholder="..." />
-            <marker date="1373277684308" expanded="true" signature="10823:10893" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="15105:15125" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="17887:18111" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="18021:18111" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="18229:18437" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="18355:18437" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="18551:18763" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="18679:18763" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="18878:19090" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="19006:19090" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="19203:19425" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="19336:19425" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="19547:19769" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="19680:19769" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="19891:20099" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="20017:20099" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="20220:20432" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="20348:20432" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="20554:20758" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="20678:20758" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="20878:21098" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="21010:21098" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="21222:21531" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="21266:21531" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="43195:43215" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="45292:45522" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="45429:45522" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="45631:45861" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="45765:45861" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="45971:46276" placeholder="..." />
+            <marker date="1373958704203" expanded="true" signature="46015:46276" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/kernel/Init.js">
+    <entry file="file://$PROJECT_DIR$/js/kernel/AppController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="123" column="46" selection-start="4068" selection-end="4068" vertical-scroll-proportion="0.6510417">
+        <state line="241" column="54" selection-start="10656" selection-end="10656" vertical-scroll-proportion="0.79744524">
           <folding />
         </state>
       </provider>
